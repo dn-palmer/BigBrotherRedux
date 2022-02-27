@@ -1,5 +1,6 @@
 ﻿using BigBrotherRedux.Entities;
 using BigBrotherRedux.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BigBrotherRedux.Services.Repositories;
 
@@ -60,7 +61,7 @@ public class UserIPDataRepo : IUserIPDataRepo
     /// Reads all entries from the UserIPData Table and reurns them in a list.
     public ICollection<UserIPData> ReadAll()
     {
-        return _db.UserIPData.ToList();
+        return _db.UserIPData.AsNoTracking().ToList();
     }
     
     /// Updates an Entry in the UserIPDataTable

@@ -22,7 +22,7 @@ namespace BigBrotherRedux.Controllers
         /// entry.
         /// <param name="ip"></param>
         [HttpGet]
-        [Route("getIP/{ip}")]
+        [Route("GetUserIP/{ip}")]
         public void GetIP(string ip)
         {
 
@@ -44,7 +44,7 @@ namespace BigBrotherRedux.Controllers
         /// Reads all entries in the UserIPData Table in a list format.
         /// <returns></returns>
         [HttpGet]
-        [Route("readAll")]
+        [Route("ReadAll")]
         public List<UserIPData> ReadAllUsers()
         {
 
@@ -61,7 +61,7 @@ namespace BigBrotherRedux.Controllers
         /// Reads a specifit entry from the USerIpData table and returns a UserIpDataObject
         /// <returns></returns>
         [HttpGet]
-        [Route("readUser/{ip}")]
+        [Route("ReadUser/{ip}")]
         public UserIPData ReadUsers(string ip)
         {
 
@@ -72,7 +72,7 @@ namespace BigBrotherRedux.Controllers
 
 
         [HttpPost]
-        [Route("createIP/{ip}")]
+        [Route("CreateUser/{ip}")]
         // POST: UserIPDataController/Create/ip
         //Creates a new entry in the UserIPData Table.
         public void Create(string ip)
@@ -96,13 +96,13 @@ namespace BigBrotherRedux.Controllers
         }
 
         [HttpPut]
-        [Route("editIP/{ip}")]
+        [Route("EditUser/{ip}")]
         // Put: UserIPDataController/Edit/ip
         //Updates a entry in the UserIPData Table.
         public void Edit(string ip)
         {
             GeoDataCleanUp cleaner = new GeoDataCleanUp();
-            UserIPData updatedEntry = new UserIPData();
+            UserIPData updatedEntry = _userIPDataRepo.GetEntry(ip.Trim());
             string cleanData = cleaner.GetIPAPIResponse(ip);
             string[] prepedData = cleaner.DatabaseReadyData(cleanData);
 
@@ -118,7 +118,7 @@ namespace BigBrotherRedux.Controllers
         }
 
         [HttpDelete]
-        [Route("deleteIP/{ip}")]
+        [Route("DeleteUser/{ip}")]
         // GET: UserIPDataController/Delete/ip
         //Deletes a user ip from the UserIPData Table.
         public void Delete(string ip)

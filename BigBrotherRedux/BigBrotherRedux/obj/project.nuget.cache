@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dU8lu0yqy7HdQfbgFrWeP/lahkfX9cNL8s5648WUNSss5kzACclV9HYtOm86LleTxSy28tU4v1iY0gbKFac4oQ==",
+  "dgSpecHash": "ZmxILsI9usNzwNIdArGZ/zUsxjEsk32qWPw8sd4sRgHMcBLNtc3d2eLbIr8A+miqT3ZDzgxNdB8RaJW63nw4rg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\quite\\Desktop\\BigBrother1.0\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux.csproj",
+  "projectFilePath": "D:\\GitHubRepos\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\quite\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\quite\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

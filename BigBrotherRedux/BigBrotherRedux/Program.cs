@@ -12,6 +12,9 @@ builder.Services.AddDbContext<BigBrotherReduxContext>(options => options.UseSqlS
 
 //Repo and Interface scoping.
 builder.Services.AddScoped<IUserIPDataRepo, UserIPDataRepo>();
+builder.Services.AddScoped<IUserInteractionRepo, UserInteractionRepo>();
+builder.Services.AddScoped<IPageReferenceRepo, PageReferenceRepo>();
+builder.Services.AddScoped<ISessionRepo, SessionRepo>();
 
 
 builder.Services.AddControllers();
@@ -20,7 +23,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-//app.Urls.Add("http://52.201.19.7:5000");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -51,5 +53,14 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=UserIpData}/{action=ReadAll}");
+        pattern: "{controller=UserIpData}");
+    endpoints.MapControllerRoute(
+       name: "default2",
+       pattern: "{controller=Session}");
+     endpoints.MapControllerRoute(
+       name: "default3",
+       pattern: "{controller=PageReference}");
+    endpoints.MapControllerRoute(
+       name: "default4",
+       pattern: "{controller=UserInteraction}");
 });

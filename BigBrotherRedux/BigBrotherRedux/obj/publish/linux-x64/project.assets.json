@@ -2666,11 +2666,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\quite\\Desktop\\BigBrother1.0\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux.csproj",
+      "projectUniqueName": "D:\\GitHubRepos\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux.csproj",
       "projectName": "BigBrotherRedux",
-      "projectPath": "C:\\Users\\quite\\Desktop\\BigBrother1.0\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux.csproj",
+      "projectPath": "D:\\GitHubRepos\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux.csproj",
       "packagesPath": "C:\\Users\\quite\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\quite\\Desktop\\BigBrother1.0\\BigBrotherRedux\\BigBrotherRedux\\obj\\publish\\linux-x64\\",
+      "outputPath": "D:\\GitHubRepos\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux\\obj\\publish\\linux-x64\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2734,16 +2734,8 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-            "version": "[6.0.1, 6.0.1]"
-          },
-          {
             "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[6.0.1, 6.0.1]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-            "version": "[6.0.1, 6.0.1]"
+            "version": "[6.0.2, 6.0.2]"
           }
         ],
         "frameworkReferences": {
@@ -2754,7 +2746,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

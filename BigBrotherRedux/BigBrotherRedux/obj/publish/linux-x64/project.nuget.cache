@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J2w96aiK5/AVFvjEnlWdpbq9XK6eFyq4c3YFF9YAI75MkEiIpzo38Eb69QVwC4oKEJIuMYC7X97J0b40o+4gTQ==",
+  "dgSpecHash": "thMmnQOzx+EfI8yPsxaZ2r/vMaD/ir2gUU9ggRp2lUdMtBJ6A1Q98YkAMOMWc2nBX+NTUtv3c2AJpuwXu9ow4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\quite\\Desktop\\BigBrother1.0\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux.csproj",
+  "projectFilePath": "D:\\GitHubRepos\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux\\BigBrotherRedux.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\quite\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\quite\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -53,9 +53,7 @@
     "C:\\Users\\quite\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\quite\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "C:\\Users\\quite\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
-    "C:\\Users\\quite\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\6.0.1\\microsoft.netcore.app.runtime.linux-x64.6.0.1.nupkg.sha512",
-    "C:\\Users\\quite\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\6.0.1\\microsoft.aspnetcore.app.runtime.linux-x64.6.0.1.nupkg.sha512",
-    "C:\\Users\\quite\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\6.0.1\\microsoft.netcore.app.host.linux-x64.6.0.1.nupkg.sha512"
+    "C:\\Users\\quite\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\6.0.2\\microsoft.netcore.app.host.linux-x64.6.0.2.nupkg.sha512"
   ],
   "logs": []
 }
