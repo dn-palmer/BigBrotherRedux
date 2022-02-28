@@ -72,10 +72,8 @@ namespace BigBrotherRedux.Controllers
 
         /// <summary>
         /// Puts an entry into the database with a certain date and description
-        /// DP: Slight edit to this one. A PUT call updates an entry that is alread in the 
-        /// datbase. I adjusted the method to reflect that. POST creates an all new entry
-        /// which PUT can also do but we have both in this controller so we should use it   
-        /// for editing. 
+        /// DP:I adjusted the method to reflect that. POST creates an all new entry
+        /// which PUT can also do but it causes issues with the Apache2 Server
         /// </summary>
         /// <param name="dateAdded">The date when the page was added</param>
         /// <param name="description">The description of the page</param>

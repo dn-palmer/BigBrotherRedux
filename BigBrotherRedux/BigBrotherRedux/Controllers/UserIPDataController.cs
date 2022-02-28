@@ -117,7 +117,8 @@ namespace BigBrotherRedux.Controllers
             _userIPDataRepo.UpdateEntry(updatedEntry);
         }
 
-        [HttpDelete]
+
+        [HttpGet]
         [Route("DeleteUser/{ip}")]
         // GET: UserIPDataController/Delete/ip
         //Deletes a user ip from the UserIPData Table.
