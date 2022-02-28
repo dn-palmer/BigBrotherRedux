@@ -51,7 +51,7 @@ namespace BigBrotherRedux.Controllers
         /// This works now.
         /// </summary>
         /// <param name="data"></param>
-        [HttpPost]
+        [HttpGet]
         [Route("CreateSession/{ip}/{date}/{login}/{purchase}")]
         public void Post(string ip, string date, string login, string purchase)
         {
@@ -73,7 +73,7 @@ namespace BigBrotherRedux.Controllers
         /// <param name="dateAdded">When the session was added</param>
         /// <param name="logIn">Is the user logged in</param>
         /// <param name="purchased">Has the user purchased anything in this session</param>
-        [HttpPut]
+        [HttpGet]
         [Route("EditSession/{id:int}/{ip}/{date}/{login}/{purchase}")]
         public void Put(int id, string ip, string date, string login, string purchase)
         {
@@ -91,7 +91,7 @@ namespace BigBrotherRedux.Controllers
         /// Deletes an entry by id in the table 
         /// </summary>
         /// <param name="id">the id we want to delete</param>
-        [HttpDelete]
+        [HttpGet]
         [Route("DeleteSession/{id:int}")]
         public void Delete(int id)
         {
