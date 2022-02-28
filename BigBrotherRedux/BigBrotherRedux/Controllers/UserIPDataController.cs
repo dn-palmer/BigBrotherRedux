@@ -71,7 +71,7 @@ namespace BigBrotherRedux.Controllers
 
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("CreateUser/{ip}")]
         // POST: UserIPDataController/Create/ip
         //Creates a new entry in the UserIPData Table.
@@ -95,7 +95,7 @@ namespace BigBrotherRedux.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("EditUser/{ip}")]
         // Put: UserIPDataController/Edit/ip
         //Updates a entry in the UserIPData Table.
@@ -118,8 +118,8 @@ namespace BigBrotherRedux.Controllers
         }
 
 
-        [HttpDelete]
-        [Route("DeleteUser/{ip}/")]
+        [HttpGet]
+        [Route("DeleteUser/{ip}")]
         // GET: UserIPDataController/Delete/ip
         //Deletes a user ip from the UserIPData Table.
         public void Delete(string ip)

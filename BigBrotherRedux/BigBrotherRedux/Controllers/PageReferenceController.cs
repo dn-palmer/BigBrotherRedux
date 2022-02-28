@@ -55,7 +55,7 @@ namespace BigBrotherRedux.Controllers
         /// DP: This didnt do anything. Nothing called or anything. Gave it functionality. 
         /// </summary>
         /// <param name="data">The array of strings which we want to add to the database</param>
-        [HttpPost]
+        [HttpGet]
         [Route("CreatePageRefrence/{dateAdded}/{pageDescription}")]
         public void Post(string dateAdded, string pageDescription)
         {
@@ -77,7 +77,7 @@ namespace BigBrotherRedux.Controllers
         /// </summary>
         /// <param name="dateAdded">The date when the page was added</param>
         /// <param name="description">The description of the page</param>
-        [HttpPost]
+        [HttpGet]
         [Route("EditPageReference/{pageId:int}/{dateAdded}/{description}")]
         public void Put(int pageId,string dateAdded, string description)
         {
@@ -93,8 +93,8 @@ namespace BigBrotherRedux.Controllers
         /// Deletes an id in the page reference table
         /// </summary>
         /// <param name="id">A number that visually </param>
-        [HttpDelete]
-        [Route("DeletePageReference/{id:int}/")]
+        [HttpGet]
+        [Route("DeletePageReference/{id:int}")]
         public void Delete(int id)
         {
             PageReference p = new PageReference();
