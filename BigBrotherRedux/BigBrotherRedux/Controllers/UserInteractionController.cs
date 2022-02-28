@@ -82,7 +82,7 @@ namespace BigBrotherRedux.Controllers
         /// <param name="interactionID">ID of the Interaction to update.</param>
         /// <param name="dateTime">Updated date and time field.</param>
         /// <param name="interactionLength">Updated interaction length field.</param>
-        [HttpPut]
+        [HttpPost]
         [Route("EditInteraction/{interactionID:int}/{dateTime}/{interactionLength}/{sessionId:int}/{pageId:int}")]
         public void PutInteraction(int interactionID, string dateTime, string interactionLength, int sessionId, int pageId)
         {
@@ -103,7 +103,7 @@ namespace BigBrotherRedux.Controllers
         /// </summary>
         /// <param name="interactionToDeleteID">ID of the Interaction to delete</param>
         [HttpDelete]
-        [Route("DeleteInteraction/{interactionToDeleteID:int}")]
+        [Route("DeleteInteraction/{interactionToDeleteID:int}/")]
         public void DeleteInteraction(int interactionToDeleteID)
         {
             _userInteractionRepo.DeleteEntry(interactionToDeleteID); // Delete an existing Interaction from the database

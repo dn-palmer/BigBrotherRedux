@@ -77,7 +77,7 @@ namespace BigBrotherRedux.Controllers
         /// </summary>
         /// <param name="dateAdded">The date when the page was added</param>
         /// <param name="description">The description of the page</param>
-        [HttpPut]
+        [HttpPost]
         [Route("EditPageReference/{pageId:int}/{dateAdded}/{description}")]
         public void Put(int pageId,string dateAdded, string description)
         {
@@ -94,7 +94,7 @@ namespace BigBrotherRedux.Controllers
         /// </summary>
         /// <param name="id">A number that visually </param>
         [HttpDelete]
-        [Route("DeletePageReference/{id:int}")]
+        [Route("DeletePageReference/{id:int}/")]
         public void Delete(int id)
         {
             PageReference p = new PageReference();

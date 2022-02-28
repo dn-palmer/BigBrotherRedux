@@ -73,7 +73,7 @@ namespace BigBrotherRedux.Controllers
         /// <param name="dateAdded">When the session was added</param>
         /// <param name="logIn">Is the user logged in</param>
         /// <param name="purchased">Has the user purchased anything in this session</param>
-        [HttpPut]
+        [HttpPost]
         [Route("EditSession/{id:int}/{ip}/{date}/{login}/{purchase}")]
         public void Put(int id, string ip, string date, string login, string purchase)
         {
@@ -92,7 +92,7 @@ namespace BigBrotherRedux.Controllers
         /// </summary>
         /// <param name="id">the id we want to delete</param>
         [HttpDelete]
-        [Route("DeleteSession/{id:int}")]
+        [Route("DeleteSession/{id:int}/")]
         public void Delete(int id)
         {
             Session s = _sessionRepo.GetEntry(id);
