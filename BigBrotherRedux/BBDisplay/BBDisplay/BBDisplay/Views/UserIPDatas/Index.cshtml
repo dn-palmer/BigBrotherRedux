@@ -12,6 +12,9 @@
 <table class="table">
     <thead>
         <tr>
+             <th>
+                @Html.DisplayNameFor(model => model.UserIP)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CountryCode)
             </th>
@@ -39,6 +42,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserIP)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CountryCode)
             </td>

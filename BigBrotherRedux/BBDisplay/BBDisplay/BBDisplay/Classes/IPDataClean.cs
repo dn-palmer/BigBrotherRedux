@@ -82,7 +82,13 @@ public class IPDataClean
 
         UserIPData[] viewData = new UserIPData[ipEnt];
 
-        while(cA < ipEnt)
+        for (int i = 0; i < viewData.Length; i++)
+        {
+            viewData[i] = new UserIPData();
+
+        }
+
+        while (cA < ipEnt)
         {
             viewData[cA].UserIP = ipData[cL];
             cL++;
@@ -109,13 +115,12 @@ public class IPDataClean
             cL++;
 
             cA++;
-            
+
         }
 
-       
-        return viewData.ToList();
 
-    
+        return viewData.ToList();
+ 
     }
 }
 
