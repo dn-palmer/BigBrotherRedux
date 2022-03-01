@@ -36,9 +36,18 @@ namespace BBDisplay.Controllers
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
-            //var model = cleaner.IndexPrep(ipInf);
+            UserIPData model = new UserIPData();
 
-            return Content(data);
+            model.UserIP = ipInf[0];
+            model.CountryCode = ipInf[1];
+            model.CountryName = ipInf[2];
+            model.StateOrRegion = ipInf[3];
+            model.City = ipInf[4];
+            model.ZipCode = ipInf[5];
+            model.VisitCount = Int32.Parse(ipInf[6]);
+            model.DeviceType = ipInf[7];
+
+            return View(model);
         }
 
         // GET: UserIPDatas/Create
@@ -48,24 +57,39 @@ namespace BBDisplay.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(UserIPData ip)
+        public async Task<IActionResult> Create(UserIPData ip)
         {
-
+            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/GetUserIP/{ip.UserIP}");
             return RedirectToAction("Index");
         }
 
         // GET: UserIPDatas/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            return RedirectToAction("Index");
+            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
+            data = cleaner.RemoveSquareBraces(data);
+            List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+            UserIPData model = new UserIPData();
+
+            model.UserIP = ipInf[0];
+            model.CountryCode = ipInf[1];
+            model.CountryName = ipInf[2];
+            model.StateOrRegion = ipInf[3];
+            model.City = ipInf[4];
+            model.ZipCode = ipInf[5];
+            model.VisitCount = Int32.Parse(ipInf[6]);
+            model.DeviceType = ipInf[7];
+
+            return View(model);
         }
 
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult DeleteConfirmed(int id)
-        //{
-        //    _db.DeleteRestaurant(id);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost, ActionName("Delete")]
+        // GET: UserIPDatas/Delete/5
+        public async Task<IActionResult> PostDelete(string id)
+        {
+            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/DeleteUser/{id}");
+            return RedirectToAction("Index");
+        }
 
     }
 }
