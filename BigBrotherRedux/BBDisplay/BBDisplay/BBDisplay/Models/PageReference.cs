@@ -1,12 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace BBDisplay.Models;
 public class PageReference
 {
 
     [Key]
+    [DisplayName("Page IP")]
     public int PageId { get; set; }
+    [DisplayName("Date Added")]
     public DateTime DateAdded { get; set; }
+    [DisplayName("Page Description")]
     public string? PageDescription { get; set; }
 
 
