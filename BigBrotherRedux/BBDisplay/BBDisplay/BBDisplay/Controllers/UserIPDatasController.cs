@@ -7,40 +7,43 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BBDisplay.Models;
+using BBDisplay.Classes;
 
 namespace BBDisplay.Controllers
 {
     public class UserIPDatasController : Controller
     {
-        private readonly BigBrotherReduxContext _context;
 
-        public UserIPDatasController(BigBrotherReduxContext context)
+        //Creating the client so that I can make calls to the API.
+       private HttpClient client = new HttpClient();
+        //Cleaner Clase
+       private IPDataClean cleaner = new IPDataClean();
+
+    // GET: UserIPDatas
+    public async Task<IActionResult> Index()
         {
-            _context = context;
-        }
+            //Every 7 entries is a singel IP Table row
+           
+            var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserIPData/ReadAll");
+            data = cleaner.RemoveSquareBraces(data);
+            List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+            var model = cleaner.IndexPrep(ipInf);
 
-        // GET: UserIPDatas
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.UserIPData.ToListAsync());
-        }
 
+            foreach (string ip in ipInf) { 
+                data += ip + "\n";
+            }
+
+            return View(model);
+        }
+        
         // GET: UserIPDatas/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var data = await client.GetAsync("http://52.168.32.232/BigBrotherRedux/UserIPData/ReadAll");
 
-            var userIPData = await _context.UserIPData
-                .FirstOrDefaultAsync(m => m.UserIP == id);
-            if (userIPData == null)
-            {
-                return NotFound();
-            }
 
-            return View(userIPData);
+            return View();
         }
 
         // GET: UserIPDatas/Create
@@ -49,105 +52,11 @@ namespace BBDisplay.Controllers
             return View();
         }
 
-        // POST: UserIPDatas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserIP,CountryCode,CountryName,StateOrRegion,City,ZipCode,VisitCount,DeviceType")] UserIPData userIPData)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(userIPData);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(userIPData);
-        }
-
-        // GET: UserIPDatas/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var userIPData = await _context.UserIPData.FindAsync(id);
-            if (userIPData == null)
-            {
-                return NotFound();
-            }
-            return View(userIPData);
-        }
-
-        // POST: UserIPDatas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UserIP,CountryCode,CountryName,StateOrRegion,City,ZipCode,VisitCount,DeviceType")] UserIPData userIPData)
-        {
-            if (id != userIPData.UserIP)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(userIPData);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserIPDataExists(userIPData.UserIP))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(userIPData);
-        }
-
         // GET: UserIPDatas/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var userIPData = await _context.UserIPData
-                .FirstOrDefaultAsync(m => m.UserIP == id);
-            if (userIPData == null)
-            {
-                return NotFound();
-            }
-
-            return View(userIPData);
+            return RedirectToAction("Index");
         }
 
-        // POST: UserIPDatas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var userIPData = await _context.UserIPData.FindAsync(id);
-            _context.UserIPData.Remove(userIPData);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool UserIPDataExists(string id)
-        {
-            return _context.UserIPData.Any(e => e.UserIP == id);
-        }
     }
 }
