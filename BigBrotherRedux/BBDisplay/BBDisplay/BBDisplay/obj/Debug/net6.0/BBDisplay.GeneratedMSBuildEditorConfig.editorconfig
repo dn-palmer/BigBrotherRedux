@@ -8,53 +8,73 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BBDisplay
 build_property.RootNamespace = BBDisplay
-build_property.ProjectDir = C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\
+build_property.ProjectDir = C:\Users\sethn\Documents\MainComputer\Software Engineering II\SE2Project\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay
+build_property.MSBuildProjectDirectory = C:\Users\sethn\Documents\MainComputer\Software Engineering II\SE2Project\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Home/Index.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Home/Privacy.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Shared/Error.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/PageReferences/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZVJlZmVyZW5jZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/PageReferences/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZVJlZmVyZW5jZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/PageReferences/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZVJlZmVyZW5jZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/PageReferences/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZVJlZmVyZW5jZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/PageReferences/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZVJlZmVyZW5jZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserIPDatas/Create.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserIPDatas/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcklQRGF0YXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserIPDatas/Delete.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserIPDatas/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcklQRGF0YXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserIPDatas/Details.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserIPDatas/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcklQRGF0YXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserIPDatas/Index.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserIPDatas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcklQRGF0YXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/_ViewImports.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/_ViewStart.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/quite/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Shared/_Layout.cshtml]
+[C:/Users/sethn/Documents/MainComputer/Software Engineering II/SE2Project/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-q7zo85dn10
