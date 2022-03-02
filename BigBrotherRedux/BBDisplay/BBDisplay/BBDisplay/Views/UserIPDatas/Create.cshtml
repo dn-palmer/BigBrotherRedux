@@ -15,8 +15,9 @@
             <div class="form-group">
                 <label asp-for="UserIP" class="control-label"></label>
                 <input asp-for="UserIP" class="form-control" />
-                <span asp-validation-for="UserIP" class="text-danger"></span>                  
-             <input type="submit" value="Create" class="btn btn-danger" /> 
+                <span asp-validation-for="UserIP" class="text-danger"></span>
+
+                <input type="submit" value="Create" class="btn btn-danger" />
 
             </div>
         </form>
@@ -24,9 +25,13 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <br />
+    <br />
+    <a class="backButton" asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

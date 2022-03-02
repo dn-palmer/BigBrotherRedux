@@ -55,7 +55,7 @@ public class UserIPDataRepo : IUserIPDataRepo
     /// <param name="ip"></param>
     public UserIPData GetEntry(string ip)
     {
-        return _db.UserIPData.FirstOrDefault(i => i.UserIP == ip); 
+        return _db.UserIPData.AsNoTracking().FirstOrDefault(i => i.UserIP == ip); 
     }
   
     /// Reads all entries from the UserIPData Table and reurns them in a list.

@@ -26,7 +26,7 @@ namespace BBDisplay.Controllers
             var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserIPData/ReadAll");
             data = cleaner.RemoveSquareBraces(data);
             List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
-            var model = cleaner.IndexPrep(ipInf);
+            var model = cleaner.IndexPrepIPData(ipInf);
             return View(model);
         }
         
@@ -36,18 +36,8 @@ namespace BBDisplay.Controllers
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
-            UserIPData model = new UserIPData();
-
-            model.UserIP = ipInf[0];
-            model.CountryCode = ipInf[1];
-            model.CountryName = ipInf[2];
-            model.StateOrRegion = ipInf[3];
-            model.City = ipInf[4];
-            model.ZipCode = ipInf[5];
-            model.VisitCount = Int32.Parse(ipInf[6]);
-            model.DeviceType = ipInf[7];
-
-            return View(model);
+            var model = cleaner.IndexPrepIPData(ipInf);
+            return View(model[0]);
         }
 
         // GET: UserIPDatas/Create
@@ -69,18 +59,8 @@ namespace BBDisplay.Controllers
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
-            UserIPData model = new UserIPData();
-
-            model.UserIP = ipInf[0];
-            model.CountryCode = ipInf[1];
-            model.CountryName = ipInf[2];
-            model.StateOrRegion = ipInf[3];
-            model.City = ipInf[4];
-            model.ZipCode = ipInf[5];
-            model.VisitCount = Int32.Parse(ipInf[6]);
-            model.DeviceType = ipInf[7];
-
-            return View(model);
+            var model = cleaner.IndexPrepIPData(ipInf);
+            return View(model[0]);
         }
 
         [HttpPost, ActionName("Delete")]

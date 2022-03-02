@@ -23,11 +23,10 @@ namespace BigBrotherRedux.Controllers
         /// <returns>A</returns>
         [HttpGet]
         [Route("GetSession/{sessionID:int}")]
-        public string Get(int sessionID)
+        public Session Get(int sessionID)
         {
-            Session data = _sessionRepo.GetEntry(sessionID);
-            return (data.SessionId + "" + data.UserIPAddress + "" 
-                + data.DateTime + "" + data.LoggedIn + "" + data.PurchaseMade);
+            var data = _sessionRepo.GetEntry(sessionID);
+            return data;
         }
 
         /// Reads all entries in the Session Table in a list format.
@@ -65,7 +64,10 @@ namespace BigBrotherRedux.Controllers
             {
                 _sessionRepo.CreateEntry(s);
             }
+
         }
+
+
 
         /// <summary>
         /// Puts a new entry into the session table
@@ -73,9 +75,10 @@ namespace BigBrotherRedux.Controllers
         /// <param name="dateAdded">When the session was added</param>
         /// <param name="logIn">Is the user logged in</param>
         /// <param name="purchased">Has the user purchased anything in this session</param>
+
         [HttpGet]
         [Route("EditSession/{id:int}/{ip}/{date}/{login}/{purchase}")]
-        public void Put(int id, string ip, string date, string login, string purchase)
+        public void PutData(int id, string ip, string date, string login, string purchase)
         {
             Session s = new Session();
             s.DateTime = DateTime.Parse(date.Replace("%2F", "/"));

@@ -1,4 +1,4 @@
-﻿@model BBDisplay.Models.UserInteraction
+﻿@model BBDisplay.Models.Session
 
 @{
     ViewData["Title"] = "Details";
@@ -7,14 +7,14 @@
 <h1>Details</h1>
 
 <div>
-    <h4>UserInteraction</h4>
+    <h4>Session</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserSessionID)
+            @Html.DisplayNameFor(model => model.UserIPAddress)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserSessionID)
+            @Html.DisplayFor(model => model.UserIPAddress)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DateTime)
@@ -23,20 +23,20 @@
             @Html.DisplayFor(model => model.DateTime)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CurrentPageID)
+            @Html.DisplayNameFor(model => model.LoggedIn)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CurrentPageID)
+            @Html.DisplayFor(model => model.LoggedIn)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InteractionLength)
+            @Html.DisplayNameFor(model => model.PurchaseMade)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InteractionLength)
+            @Html.DisplayFor(model => model.PurchaseMade)
         </dd>
     </dl>
 </div>
 <div>
-   @* <a asp-action="Edit" asp-route-id="@Model?.UserInteractionID">Edit</a> |*@
+@*    <a asp-action="Edit" asp-route-id="@Model?.SessionId">Edit</a> |*@
     <a class="backButton" asp-action="Index">Back to List</a>
 </div>

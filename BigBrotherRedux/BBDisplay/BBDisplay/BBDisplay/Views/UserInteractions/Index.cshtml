@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<BBDisplay.Models.UserInteraction>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "User Interactions";
 }
 
-<h1>Index</h1>
+<h1>User Interactions</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="newEntry" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -43,9 +43,10 @@
                 @Html.DisplayFor(modelItem => item.InteractionLength)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.UserInteractionID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserInteractionID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserInteractionID">Delete</a>
+@*              <a class="" asp-action="Edit" asp-route-id="@item.UserInteractionID">Edit</a> |*@
+                <a class="detailsButton"  asp-action="Details" asp-route-id="@item.UserInteractionID">Details</a> 
+                   <br/>
+                <a class="deleteButton" asp-action="Delete" asp-route-id="@item.UserInteractionID">Delete</a>
             </td>
         </tr>
 }

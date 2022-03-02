@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BBDisplay.Models.Session>
+
+@{
+    ViewData["Title"] = "Sessions";
+}
+
+<h1>Sessions</h1>
+
+<p>
+    <a class="newEntry" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserIPAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoggedIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseMade)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserIPAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoggedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseMade)
+            </td>
+            <td>
+@*                <a asp-action="Edit" asp-route-id="@item.SessionId">Edit</a> |*@
+                <a class="detailsButton" asp-action="Details" asp-route-id="@item.SessionId">Details</a> 
+                   <br/>
+                <a class="deleteButton" asp-action="Delete" asp-route-id="@item.SessionId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

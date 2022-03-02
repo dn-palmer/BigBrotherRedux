@@ -28,9 +28,9 @@ namespace BigBrotherRedux.Controllers
         /// <returns>Existing Interaction within the database.</returns>
         [HttpGet]
         [Route("ReadInteraction/{interactionToGetID}")]
-        public string GetInteraction(int interactionToGetID)
+        public UserInteraction GetInteraction(int interactionToGetID)
         {
-            return _userInteractionRepo.GetEntry(interactionToGetID).ToString(); // Get an existing Interaction within the database
+            return _userInteractionRepo.GetEntry(interactionToGetID); // Get an existing Interaction within the database
         }
 
         /// Reads all entries in the UserIPData Table in a list format.

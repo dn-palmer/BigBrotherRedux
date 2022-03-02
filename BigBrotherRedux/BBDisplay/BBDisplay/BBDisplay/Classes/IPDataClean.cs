@@ -72,13 +72,11 @@ public class IPDataClean
     /// <returns></returns>
     /// 
     
-    public List<UserIPData> IndexPrep(List<string> ipData)
+    public List<UserIPData> IndexPrepIPData(List<string> ipData)
     {
         int cL = 0; 
         int cA = 0;
-        int ipEnt = ipData.Count;
-        ipEnt = ipEnt / 8;
-        ipEnt--;
+        int ipEnt = ipData.Count / 8;
 
         UserIPData[] viewData = new UserIPData[ipEnt];
 

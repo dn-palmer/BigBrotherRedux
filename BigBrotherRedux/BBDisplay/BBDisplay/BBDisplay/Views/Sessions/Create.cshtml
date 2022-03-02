@@ -1,4 +1,4 @@
-﻿@model BBDisplay.Models.UserInteraction
+﻿@model BBDisplay.Models.Session
 
 @{
     ViewData["Title"] = "Create";
@@ -6,16 +6,16 @@
 
 <h1>Create</h1>
 
-<h4>UserInteraction</h4>
+<h4>Session</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="UserSessionID" class="control-label"></label>
-                <input asp-for="UserSessionID" class="form-control" />
-                <span asp-validation-for="UserSessionID" class="text-danger"></span>
+                <label asp-for="UserIPAddress" class="control-label"></label>
+                <input asp-for="UserIPAddress" class="form-control" />
+                <span asp-validation-for="UserIPAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DateTime" class="control-label"></label>
@@ -23,14 +23,14 @@
                 <span asp-validation-for="DateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CurrentPageID" class="control-label"></label>
-                <input asp-for="CurrentPageID" class="form-control" />
-                <span asp-validation-for="CurrentPageID" class="text-danger"></span>
+                <label asp-for="LoggedIn" class="control-label"></label>
+                <input asp-for="LoggedIn" class="form-control" />
+                <span asp-validation-for="LoggedIn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="InteractionLength" class="control-label"></label>
-                <input asp-for="InteractionLength" class="form-control" />
-                <span asp-validation-for="InteractionLength" class="text-danger"></span>
+                <label asp-for="PurchaseMade" class="control-label"></label>
+                <input asp-for="PurchaseMade" class="form-control" />
+                <span asp-validation-for="PurchaseMade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -40,7 +40,7 @@
 </div>
 
 <div>
-        <br />
+    <br />
     <br />
     <a class="backButton" asp-action="Index">Back to List</a>
 </div>

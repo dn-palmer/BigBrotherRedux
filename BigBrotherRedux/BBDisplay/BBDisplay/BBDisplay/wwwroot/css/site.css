@@ -15,4 +15,57 @@ html {
 
 body {
   margin-bottom: 60px;
+  color:white;
 }
+table thead {
+    color: white;
+    
+}
+
+table td {
+    color: white;
+}
+
+.detailsButton {
+    display: block;
+    background: #476b6b;
+    text-align: center;
+    color: white;
+    width: 75px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.deleteButton {
+    display: block;
+    background: #732626;
+    text-align: center;
+    color: white;
+    width: 75px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.newEntry {
+    display: block;
+    background: #264d73;
+    color: white;
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.backButton {
+    display: block;
+    background: #573F54;
+    text-align: center;
+    color: white;
+    width: 120px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+

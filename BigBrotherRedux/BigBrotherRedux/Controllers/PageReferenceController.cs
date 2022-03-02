@@ -25,12 +25,12 @@ namespace BigBrotherRedux.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetPageReference/{pageReference}")]
-        public string GetPageReference(int pageReference)
+        public PageReference GetPageReference(int pageReference)
         {
             PageReference data = _pageReferenceRepo.GetEntry(pageReference.ToString());
             if (data != null)
             {
-                return (data.PageId + "\n" + data.DateAdded + "\n" + data.PageDescription);
+                return data;
             }
             else
                 return null;
