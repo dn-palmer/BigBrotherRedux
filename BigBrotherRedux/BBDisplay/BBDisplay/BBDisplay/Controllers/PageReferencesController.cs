@@ -7,11 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BBDisplay.Models;
+using BBDisplay.Classes;
 
 namespace BBDisplay.Controllers
 {
     public class PageReferencesController : Controller
     {
+        //Creating the client so that I can make calls to the API.
+        private HttpClient client = new HttpClient();
+        //Cleaner class. So that I can get ride of the Json formmating. JSon Serialzation would have worked bettter! 
+        //Note to future me.
+        private PageReferenceClean cleaner = new PageReferenceClean();
+
         private readonly BigBrotherReduxContext _context;
 
         public PageReferencesController(BigBrotherReduxContext context)
@@ -22,25 +29,22 @@ namespace BBDisplay.Controllers
         // GET: PageReferences
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PageReference.ToListAsync());
+            var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/PageReference/ReadAll");
+            data = cleaner.RemoveSquareBraces(data);
+            List<string> pageInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+            var model = cleaner.IndexPrepPageReference(pageInf);
+
+            return View(model);
         }
 
         // GET: PageReferences/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var pageReference = await _context.PageReference
-                .FirstOrDefaultAsync(m => m.PageId == id);
-            if (pageReference == null)
-            {
-                return NotFound();
-            }
-
-            return View(pageReference);
+            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/GetPageReference/{id}");
+            data = cleaner.RemoveSquareBraces(data);
+            List<string> pageRefIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+            var model = cleaner.IndexPrepPageReference(pageRefIn);
+            return View(model[0]);
         }
 
         // GET: PageReferences/Create
@@ -58,11 +62,11 @@ namespace BBDisplay.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pageReference);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/CreatePageRefrence/{pageReference.DateAdded.ToString().Replace('/', '-')}/{pageReference.PageDescription.ToString()}");
+
             }
-            return View(pageReference);
+            return RedirectToAction("Index");
         }
 
         // GET: PageReferences/Edit/5
@@ -92,46 +96,44 @@ namespace BBDisplay.Controllers
             {
                 return NotFound();
             }
+            string pageID, DateAdded, PageDescription;
+            pageID = pageReference.PageId.ToString();
+            DateAdded = pageReference.DateAdded.ToString();
+            PageDescription= pageReference.PageDescription.ToString();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(pageReference);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PageReferenceExists(pageReference.PageId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(pageReference);
+            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/EditPageReference/{pageID}/{DateAdded}/{PageDescription}");
+            data = cleaner.RemoveSquareBraces(data);
+            List<string> pagerefIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+            var model = cleaner.IndexPrepPageReference(pagerefIn);
+            return View(model[0]);
         }
+
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost(int id, [Bind("PageId,DateAdded,PageDescription")] PageReference pageReference)
+        {
+        
+            string pageID, DateAdded, PageDescription;
+            pageID = pageReference.PageId.ToString();
+            DateAdded = pageReference.DateAdded.ToString();
+            PageDescription = pageReference.PageDescription.ToString();
+
+            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/EditPageReference/{pageID}/{DateAdded}/{PageDescription}");
+            return RedirectToAction("Index");
+        }
+
+
+
 
         // GET: PageReferences/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var pageReference = await _context.PageReference
-                .FirstOrDefaultAsync(m => m.PageId == id);
-            if (pageReference == null)
-            {
-                return NotFound();
-            }
-
-            return View(pageReference);
+            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/GetPageReference/{id}");
+            data = cleaner.RemoveSquareBraces(data);
+            List<string> pagerefIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+            var model = cleaner.IndexPrepPageReference(pagerefIn);
+            return View(model[0]);
         }
 
         // POST: PageReferences/Delete/5
@@ -139,11 +141,11 @@ namespace BBDisplay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var pageReference = await _context.PageReference.FindAsync(id);
-            _context.PageReference.Remove(pageReference);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/DeletePageReference/{id}");
+            return RedirectToAction("Index");
         }
+
+
 
         private bool PageReferenceExists(int id)
         {
