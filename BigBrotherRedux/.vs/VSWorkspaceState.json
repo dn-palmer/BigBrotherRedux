@@ -3,9 +3,13 @@
     "",
     "\\BBDisplay",
     "\\BBDisplay\\BBDisplay",
+    "\\BBDisplay\\BBDisplay\\BBDisplay",
+    "\\BBDisplay\\BBDisplay\\BBDisplay\\Controllers",
+    "\\BBDisplay\\BBDisplay\\BBDisplay\\Views",
+    "\\BBDisplay\\BBDisplay\\BBDisplay\\Views\\PageReferences",
     "\\BigBrotherRedux",
     "\\BigBrotherRedux\\Controllers"
   ],
-  "SelectedNode": "\\BBDisplay\\BBDisplay\\BBDisplay.sln",
+  "SelectedNode": "\\BBDisplay\\BBDisplay\\BBDisplay\\Controllers\\UserInteractionsController.cs",
   "PreviewInSolutionExplorer": false
 }

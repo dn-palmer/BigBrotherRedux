@@ -1,41 +1,48 @@
 ﻿#nullable disable
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BBDisplay.Models;
+using BBDisplay.Classes;
 
 namespace BBDisplay.Controllers
 {
     public class UserInteractionsController : Controller
     {
-        private readonly BigBrotherReduxContext _context;
+        private HttpClient httpClient = new HttpClient(); // HttpClient used to communicate with the API
+        private UserInteractionsClean dataCleaner = new UserInteractionsClean(); // Used to clean the incoming data from the API
 
-        public UserInteractionsController(BigBrotherReduxContext context)
-        {
-            _context = context;
-        }
-
-        // GET: UserInteractions
+        /// <summary>
+        /// Returns all User Interactions from the database.
+        /// </summary>
+        /// <returns>ViewResult object based on the constructed model from the cleaned data returned by the API.</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.UserInteraction.ToListAsync());
+            var dataFromAPI = await httpClient.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadAll"); // Read all of the User Interaction entries from the database
+
+            dataFromAPI = dataCleaner.RemoveSquareBraces(dataFromAPI); // Remove the square brackets from the data returned by the API
+
+            List<string> userInteractionsPrepped = dataCleaner.PreppedData(dataCleaner.CleanAPIResponse(dataFromAPI)); // Place the data returned from the API into a string for processing into the database
+
+            var model = dataCleaner.IndexPrepUserInteractionsData(userInteractionsPrepped); // Construct a model from the cleaned data returned by the API
+
+            return View(model); // Create a ViewResult object based on the constructed model from the cleaned data returned by the API
         }
 
-        // GET: UserInteractions/Details/5
+        /// <summary>
+        /// Returns the specified User Interactions from the database
+        /// </summary>
+        /// <param name="id">ID of the User Interaction to return.</param>
+        /// <returns>iewResult object based on the constructed model from the cleaned data returned by the API.</returns>
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
 
-            var userInteraction = await _context.UserInteraction
-                .FirstOrDefaultAsync(m => m.UserInteractionID == id);
-            if (userInteraction == null)
-            {
-                return NotFound();
-            }
+            dataFromAPI = dataCleaner.RemoveSquareBraces(dataFromAPI); // Remove the square brackets from the data returned by the API
 
-            return View(userInteraction);
+            List<string> userInteractionsPrepped = dataCleaner.PreppedData(dataCleaner.CleanAPIResponse(dataFromAPI)); // Place the data returned from the API into a string for processing into the database
+
+            var model = dataCleaner.IndexPrepUserInteractionsData(userInteractionsPrepped); // Construct a model from the cleaned data returned by the API
+
+            return View(model[0]); // Create a ViewResult object based on the constructed model from the cleaned data returned by the API
         }
 
         // GET: UserInteractions/Create
@@ -44,105 +51,82 @@ namespace BBDisplay.Controllers
             return View();
         }
 
-        // POST: UserInteractions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Creates a User Interaction within the database.
+        /// </summary>
+        /// <param name="userInteraction">User Interaction to create.</param>
+        /// <returns>Result of the task.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserInteractionID,UserSessionID,DateTime,CurrentPageID,InteractionLength")] UserInteraction userInteraction)
+        public async Task<IActionResult> Create(UserInteraction userInteraction)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(userInteraction);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(userInteraction);
+            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/PostInteraction/{userInteraction.DateTime}/{userInteraction.InteractionLength}/{userInteraction.UserSessionID.ToString()}/{userInteraction.CurrentPageID.ToString()}"); // Create a User Interaction within the database
+
+            return RedirectToAction("Index"); // Redirect to the Index page once the task has completed
         }
 
-        // GET: UserInteractions/Edit/5
+        /// <summary>
+        /// Edits a specified User Interaction within the database.
+        /// </summary>
+        /// <param name="id">ID of the User Interaction to edit.</param>
+        /// <returns>Result of the task.</returns>
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
 
-            var userInteraction = await _context.UserInteraction.FindAsync(id);
-            if (userInteraction == null)
-            {
-                return NotFound();
-            }
-            return View(userInteraction);
+            dataFromAPI = dataCleaner.RemoveSquareBraces(dataFromAPI); // Remove the square brackets from the data returned by the API
+
+            List<string> userInteractionsPrepped = dataCleaner.PreppedData(dataCleaner.CleanAPIResponse(dataFromAPI)); // Place the data returned from the API into a string for processing into the database
+
+            var model = dataCleaner.IndexPrepUserInteractionsData(userInteractionsPrepped); // Construct a model from the cleaned data returned by the API
+
+            return View(model[0]); // Create a ViewResult object based on the constructed model from the cleaned data returned by the API
         }
 
-        // POST: UserInteractions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edits a specified User Interaction within the database.
+        /// </summary>
+        /// <param name="userInteraction">User Interaction to edit.</param>
+        /// <returns>Result of the task.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserInteractionID,UserSessionID,DateTime,CurrentPageID,InteractionLength")] UserInteraction userInteraction)
+        public async Task<IActionResult> EditPost(int id, [Bind("UserInteractionID,UserSessionID,DateTime,CurrentPageID,InteractionLength")] UserInteraction userInteraction)
         {
-            if (id != userInteraction.UserInteractionID)
-            {
-                return NotFound();
-            }
+            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/EditInteraction/{userInteraction.DateTime}/{userInteraction.InteractionLength}/{userInteraction.UserSessionID.ToString()}/{userInteraction.CurrentPageID.ToString()}"); // Edit the specified User Interaction within the database
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(userInteraction);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserInteractionExists(userInteraction.UserInteractionID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(userInteraction);
+            return RedirectToAction("Index"); // Redirect to the Index page once the task has completed
         }
 
-        // GET: UserInteractions/Delete/5
+        /// <summary>
+        /// Deletes a specified User Interaction within the database.
+        /// </summary>
+        /// <param name="id">ID of the User Interaction to delete.</param>
+        /// <returns>Result of the task.</returns>
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
 
-            var userInteraction = await _context.UserInteraction
-                .FirstOrDefaultAsync(m => m.UserInteractionID == id);
-            if (userInteraction == null)
-            {
-                return NotFound();
-            }
+            dataFromAPI = dataCleaner.RemoveSquareBraces(dataFromAPI); // Remove the square brackets from the data returned by the API
 
-            return View(userInteraction);
+            List<string> userInteractionsPrepped = dataCleaner.PreppedData(dataCleaner.CleanAPIResponse(dataFromAPI)); // Place the data returned from the API into a string for processing into the database
+
+            var model = dataCleaner.IndexPrepUserInteractionsData(userInteractionsPrepped); // Construct a model from the cleaned data returned by the API
+
+            return View(model[0]); // Create a ViewResult object based on the constructed model from the cleaned data returned by the API
         }
 
-        // POST: UserInteractions/Delete/5
+        /// <summary>
+        /// Deletes a specified User Interaction within the database.
+        /// </summary>
+        /// <param name="userInteraction">User Interaction to delete.</param>
+        /// <returns>Result of the task.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var userInteraction = await _context.UserInteraction.FindAsync(id);
-            _context.UserInteraction.Remove(userInteraction);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            var dataFromAPi = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/DeleteInteraction/{id}"); // Delete the specified User Interaction within the database
 
-        private bool UserInteractionExists(int id)
-        {
-            return _context.UserInteraction.Any(e => e.UserInteractionID == id);
+            return RedirectToAction("Index"); // Redirect to the Index page once the task has completed
         }
     }
 }
