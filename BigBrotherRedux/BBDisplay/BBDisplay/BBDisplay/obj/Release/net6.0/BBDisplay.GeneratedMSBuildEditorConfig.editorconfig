@@ -35,12 +35,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZVJlZmVyZW5jZXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/PageReferences/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZVJlZmVyZW5jZXNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/PageReferences/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZVJlZmVyZW5jZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Sessions/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Sessions/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Sessions/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Sessions/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/Shared/Error.cshtml]
@@ -61,10 +73,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserInteractions/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckludGVyYWN0aW9uc1xEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserInteractions/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckludGVyYWN0aW9uc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/zakkt/Documents/GitHub/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/Views/UserInteractions/Index.cshtml]
