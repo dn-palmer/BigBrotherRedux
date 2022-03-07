@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using BBDisplay.Models;
 using BBDisplay.Classes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BBDisplay.Controllers
 {
@@ -14,6 +15,7 @@ namespace BBDisplay.Controllers
         /// Returns all User Interactions from the database.
         /// </summary>
         /// <returns>ViewResult object based on the constructed model from the cleaned data returned by the API.</returns>
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var dataFromAPI = await httpClient.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadAll"); // Read all of the User Interaction entries from the database
@@ -32,6 +34,7 @@ namespace BBDisplay.Controllers
         /// </summary>
         /// <param name="id">ID of the User Interaction to return.</param>
         /// <returns>iewResult object based on the constructed model from the cleaned data returned by the API.</returns>
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
@@ -46,6 +49,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: UserInteractions/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +62,7 @@ namespace BBDisplay.Controllers
         /// <returns>Result of the task.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create(UserInteraction userInteraction)
         {
             var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/PostInteraction/{userInteraction.DateTime}/{userInteraction.InteractionLength}/{userInteraction.UserSessionID.ToString()}/{userInteraction.CurrentPageID.ToString()}"); // Create a User Interaction within the database
@@ -70,6 +75,7 @@ namespace BBDisplay.Controllers
         /// </summary>
         /// <param name="id">ID of the User Interaction to edit.</param>
         /// <returns>Result of the task.</returns>
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
@@ -90,6 +96,7 @@ namespace BBDisplay.Controllers
         /// <returns>Result of the task.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> EditPost(int id, [Bind("UserInteractionID,UserSessionID,DateTime,CurrentPageID,InteractionLength")] UserInteraction userInteraction)
         {
             var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/EditInteraction/{userInteraction.DateTime}/{userInteraction.InteractionLength}/{userInteraction.UserSessionID.ToString()}/{userInteraction.CurrentPageID.ToString()}"); // Edit the specified User Interaction within the database
@@ -102,6 +109,7 @@ namespace BBDisplay.Controllers
         /// </summary>
         /// <param name="id">ID of the User Interaction to delete.</param>
         /// <returns>Result of the task.</returns>
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
@@ -122,6 +130,7 @@ namespace BBDisplay.Controllers
         /// <returns>Result of the task.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var dataFromAPi = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/DeleteInteraction/{id}"); // Delete the specified User Interaction within the database

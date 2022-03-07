@@ -4,7 +4,7 @@ namespace BBDisplay.Models;
 
 public class BigBrotherReduxContext : DbContext
 {
-    public BigBrotherReduxContext(DbContextOptions options) : base(options)
+    public BigBrotherReduxContext(DbContextOptions<BigBrotherReduxContext> options) : base(options)
     {
 
     }

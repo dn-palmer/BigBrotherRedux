@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BBDisplay.Models;
 using BBDisplay.Classes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BBDisplay.Controllers
 {
@@ -22,6 +23,8 @@ namespace BBDisplay.Controllers
 
 
         // GET: Sessions
+        [Authorize]
+
         public async Task<IActionResult> Index()
         {
             SessionsClean cleaner = new SessionsClean();
@@ -35,6 +38,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: Sessions/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(string id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/GetSession/{id}");
@@ -45,6 +49,8 @@ namespace BBDisplay.Controllers
         }
 
         // GET: Sessions/Create
+        [Authorize]
+
         public IActionResult Create()
         {
             return View();
@@ -55,6 +61,8 @@ namespace BBDisplay.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
+
         public async Task<IActionResult> Create(Session session)
         {
             string ip, date, login, purchase;
@@ -69,6 +77,8 @@ namespace BBDisplay.Controllers
         }
 
         // GET: Sessions/Edit/5
+        [Authorize]
+
         public async Task<IActionResult> Edit(int? id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/GetSession/{id}");
@@ -83,6 +93,8 @@ namespace BBDisplay.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
+        [Authorize]
+
         public async Task<IActionResult> EditPost(int id, [Bind("SessionId,UserIPAddress,DateTime,LoggedIn,PurchaseMade")] Session session)
         {
             string ip, date, login, purchase;
@@ -96,6 +108,8 @@ namespace BBDisplay.Controllers
         }
 
         // GET: Sessions/Delete/5
+        [Authorize]
+
         public async Task<IActionResult> Delete(int? id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/GetSession/{id}");
@@ -108,6 +122,8 @@ namespace BBDisplay.Controllers
         // POST: Sessions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/DeleteSession/{id}");
