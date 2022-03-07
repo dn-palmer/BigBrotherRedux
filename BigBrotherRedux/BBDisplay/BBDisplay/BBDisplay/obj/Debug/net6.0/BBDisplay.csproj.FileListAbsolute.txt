@@ -1058,3 +1058,12 @@ E:\ETSU\Spring 2022\Software Engineering II CSCI 4350-001\Project\BigBrotherProj
 E:\ETSU\Spring 2022\Software Engineering II CSCI 4350-001\Project\BigBrotherProject\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 E:\ETSU\Spring 2022\Software Engineering II CSCI 4350-001\Project\BigBrotherProject\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
 E:\ETSU\Spring 2022\Software Engineering II CSCI 4350-001\Project\BigBrotherProject\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\obj\Debug\net6.0\BBDisplay.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\obj\Debug\net6.0\BBDisplay.MvcApplicationPartsAssemblyInfo.cs

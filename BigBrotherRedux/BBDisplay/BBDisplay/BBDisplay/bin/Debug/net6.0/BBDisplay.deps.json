@@ -77,6 +77,12 @@
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.2": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "6.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": {
+            "assemblyVersion": "6.0.2.0",
+            "fileVersion": "6.0.222.6412"
+          }
         }
       },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.2": {

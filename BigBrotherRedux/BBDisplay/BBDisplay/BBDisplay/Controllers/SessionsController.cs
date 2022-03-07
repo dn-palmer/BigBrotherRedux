@@ -30,10 +30,13 @@ namespace BBDisplay.Controllers
             SessionsClean cleaner = new SessionsClean();
 
             var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/Session/ReadAll");
-            data = cleaner.RemoveSquareBraces(data);
-            List<string> sessIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
-            var model = cleaner.IndexPrepSessions(sessIn);
-            return View(model);
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> sessIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepSessions(sessIn);
+                return View(model);
+
+   
+          
 
         }
 

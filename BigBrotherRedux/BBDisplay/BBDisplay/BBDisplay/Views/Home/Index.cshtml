@@ -2,7 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="Con" >  
+    <h1>Big Brother Monitoring Services</h1>
+    <h3>This site is designed to showcase the data we received from your website. Please feel free to have a look around.<br>
+    </h3>
+<p> <br/>User IP Data will show past and present user location information. <br/>
+    <br/>User Interactions will show past and present user website data. <br/>
+    <br/>Sessions will display the amount of time each user has spend on the site at a given time. <br/>
+    <br/>Page Reference wil display what each site on your page is for. <br/>
+</p> 
+    <a asp-controller="UserIPDatas" asp-action="Index"> <div class="rightDiv">User IP Data</div> </a>
+    <a asp-controller="UserInteractions" asp-action="Index"><div class="rightDiv">User Interactions</div></a>
+    <a asp-controller="Sessions" asp-action="Index"><div class="rightDiv">Sessions</div></a>
+    <a asp-controller="PageReferences" asp-action="Index"><div class="rightDiv">Page Reference</div></a>
 </div>
