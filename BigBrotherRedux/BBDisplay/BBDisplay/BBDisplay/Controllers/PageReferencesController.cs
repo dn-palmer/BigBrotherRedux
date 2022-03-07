@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BBDisplay.Models;
 using BBDisplay.Classes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BBDisplay.Controllers
 {
@@ -27,6 +28,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: PageReferences
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/PageReference/ReadAll");
@@ -38,6 +40,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: PageReferences/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(string id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/GetPageReference/{id}");
@@ -48,6 +51,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: PageReferences/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +62,7 @@ namespace BBDisplay.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("PageId,DateAdded,PageDescription")] PageReference pageReference)
         {
             if (ModelState.IsValid)
@@ -70,6 +75,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: PageReferences/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,6 +96,7 @@ namespace BBDisplay.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("PageId,DateAdded,PageDescription")] PageReference pageReference)
         {
             if (id != pageReference.PageId)
@@ -111,6 +118,7 @@ namespace BBDisplay.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> EditPost(int id, [Bind("PageId,DateAdded,PageDescription")] PageReference pageReference)
         {
         
@@ -127,6 +135,7 @@ namespace BBDisplay.Controllers
 
 
         // GET: PageReferences/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/GetPageReference/{id}");
@@ -139,6 +148,7 @@ namespace BBDisplay.Controllers
         // POST: PageReferences/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/DeletePageReference/{id}");

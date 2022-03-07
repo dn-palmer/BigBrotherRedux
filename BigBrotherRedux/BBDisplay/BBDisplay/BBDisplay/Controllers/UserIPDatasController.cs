@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BBDisplay.Models;
 using BBDisplay.Classes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BBDisplay.Controllers
 {
@@ -20,8 +21,9 @@ namespace BBDisplay.Controllers
         //Note to future me.
        private IPDataClean cleaner = new IPDataClean();
 
-    // GET: UserIPDatas
-    public async Task<IActionResult> Index()
+        // GET: UserIPDatas
+        [Authorize]
+        public async Task<IActionResult> Index()
         {           
             var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserIPData/ReadAll");
             data = cleaner.RemoveSquareBraces(data);
@@ -29,8 +31,9 @@ namespace BBDisplay.Controllers
             var model = cleaner.IndexPrepIPData(ipInf);
             return View(model);
         }
-        
+
         // GET: UserIPDatas/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(string id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
@@ -41,12 +44,14 @@ namespace BBDisplay.Controllers
         }
 
         // GET: UserIPDatas/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(UserIPData ip)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/GetUserIP/{ip.UserIP}");
@@ -54,6 +59,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: UserIPDatas/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
@@ -65,6 +71,7 @@ namespace BBDisplay.Controllers
 
         [HttpPost, ActionName("Delete")]
         // GET: UserIPDatas/Delete/5
+        [Authorize]
         public async Task<IActionResult> PostDelete(string id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/DeleteUser/{id}");
