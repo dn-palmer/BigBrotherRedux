@@ -23,7 +23,7 @@ namespace BBDisplay.Controllers
 
 
         // GET: Sessions
-        [Authorize]
+
 
         public async Task<IActionResult> Index()
         {
@@ -41,7 +41,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: Sessions/Details/5
-        [Authorize]
+
         public async Task<IActionResult> Details(string id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/GetSession/{id}");

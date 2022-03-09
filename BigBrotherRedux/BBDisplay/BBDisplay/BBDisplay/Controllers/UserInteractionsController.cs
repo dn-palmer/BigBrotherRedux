@@ -15,7 +15,7 @@ namespace BBDisplay.Controllers
         /// Returns all User Interactions from the database.
         /// </summary>
         /// <returns>ViewResult object based on the constructed model from the cleaned data returned by the API.</returns>
-        [Authorize]
+
         public async Task<IActionResult> Index()
         {
             var dataFromAPI = await httpClient.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadAll"); // Read all of the User Interaction entries from the database
@@ -33,8 +33,7 @@ namespace BBDisplay.Controllers
         /// Returns the specified User Interactions from the database
         /// </summary>
         /// <param name="id">ID of the User Interaction to return.</param>
-        /// <returns>iewResult object based on the constructed model from the cleaned data returned by the API.</returns>
-        [Authorize]
+
         public async Task<IActionResult> Details(int? id)
         {
             var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database

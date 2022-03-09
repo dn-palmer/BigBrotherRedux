@@ -28,7 +28,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: PageReferences
-        [Authorize]
+     
         public async Task<IActionResult> Index()
         {
             var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/PageReference/ReadAll");
@@ -40,7 +40,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: PageReferences/Details/5
-        [Authorize]
+   
         public async Task<IActionResult> Details(string id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/GetPageReference/{id}");

@@ -22,7 +22,7 @@ namespace BBDisplay.Controllers
        private IPDataClean cleaner = new IPDataClean();
 
         // GET: UserIPDatas
-        [Authorize]
+
         public async Task<IActionResult> Index()
         {           
             var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserIPData/ReadAll");
@@ -33,7 +33,7 @@ namespace BBDisplay.Controllers
         }
 
         // GET: UserIPDatas/Details/5
-        [Authorize]
+
         public async Task<IActionResult> Details(string id)
         {
             var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
