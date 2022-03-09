@@ -68,7 +68,7 @@ namespace BBDisplay.Controllers
             if (ModelState.IsValid)
             {
 
-                var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/CreatePageRefrence/{pageReference.DateAdded.ToString().Replace('/', '-')}/{pageReference.PageDescription.ToString()}");
+                var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/CreatePageRefrence/{pageReference.DateAdded}/{pageReference.PageDescription}");
 
             }
             return RedirectToAction("Index");

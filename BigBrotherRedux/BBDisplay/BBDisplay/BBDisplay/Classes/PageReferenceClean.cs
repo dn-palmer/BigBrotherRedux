@@ -26,7 +26,7 @@ public class PageReferenceClean : IPDataClean
             {
                 sample += pageRefData[cL][i]; 
             }
-            viewData[cA].DateAdded = DateTime.Parse(sample); cL++;
+            viewData[cA].DateAdded = sample; cL++;
             viewData[cA].PageDescription = pageRefData[cL]; cL++;
             cA++;
         }
