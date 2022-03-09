@@ -9,7 +9,7 @@ public class PageReference
     [DisplayName("Page ID")]
     public int PageId { get; set; }
     [DisplayName("Date Added")]
-    public DateTime DateAdded { get; set; }
+    public String DateAdded { get; set; }
     [DisplayName("Page Description")]
     public string? PageDescription { get; set; }
 
