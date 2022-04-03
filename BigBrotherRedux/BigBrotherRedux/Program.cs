@@ -8,6 +8,7 @@ using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddDbContext<BigBrotherReduxContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
