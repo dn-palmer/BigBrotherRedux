@@ -1,3 +1,4 @@
+using BigBrotherRedux.Migrations;
 using BigBrotherRedux.Services;
 using BigBrotherRedux.Services.Interfaces;
 using BigBrotherRedux.Services.Repositories;

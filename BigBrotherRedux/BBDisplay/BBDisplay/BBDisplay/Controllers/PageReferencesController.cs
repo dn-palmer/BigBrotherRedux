@@ -31,12 +31,20 @@ namespace BBDisplay.Controllers
      
         public async Task<IActionResult> Index()
         {
+            /*
             var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/PageReference/ReadAll");
             data = cleaner.RemoveSquareBraces(data);
             List<string> pageInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepPageReference(pageInf);
-
+            */
+            PageReference p = new PageReference();
+            p.PageId = 1;
+            p.PageDescription = "added";
+            p.DateAdded = "1-1-1999";
+            var model = new List<PageReference>();
+            model.Add(p);
             return View(model);
+            
         }
 
         // GET: PageReferences/Details/5

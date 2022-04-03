@@ -20,4 +20,10 @@
     <Folder Include="drivers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="BBDisplay">
+      <HintPath>..\..\..\BBDisplay\BBDisplay\BBDisplay\bin\Release\net6.0\BBDisplay.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
