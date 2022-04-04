@@ -16,16 +16,18 @@ namespace BBDisplay.Controllers
     {
 
         //Creating the client so that I can make calls to the API.
-       private HttpClient client = new HttpClient();
+        private HttpClient client = new HttpClient();
         //Cleaner class. So that I can get ride of the Json formmating. JSon Serialzation would have worked bettter! 
         //Note to future me.
-       private IPDataClean cleaner = new IPDataClean();
+        private IPDataClean cleaner = new IPDataClean();
+
+        private string apiIPaddress = "34.125.193.123";
 
         // GET: UserIPDatas
 
         public async Task<IActionResult> Index()
         {           
-            var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserIPData/ReadAll");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserIPData/ReadAll");
             data = cleaner.RemoveSquareBraces(data);
             List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepIPData(ipInf);
@@ -36,7 +38,7 @@ namespace BBDisplay.Controllers
 
         public async Task<IActionResult> Details(string id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserIPData/ReadUser/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepIPData(ipInf);
@@ -54,7 +56,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> Create(UserIPData ip)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/GetUserIP/{ip.UserIP}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserIPData/GetUserIP/{ip.UserIP}");
             return RedirectToAction("Index");
         }
 
@@ -62,7 +64,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/ReadUser/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserIPData/ReadUser/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> ipInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepIPData(ipInf);
@@ -74,7 +76,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> PostDelete(string id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserIPData/DeleteUser/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserIPData/DeleteUser/{id}");
             return RedirectToAction("Index");
         }
 

@@ -1,0 +1,112 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    color: white;
+}
+
+table thead {
+    color: white;
+}
+
+table td {
+    color: white;
+}
+
+.detailsButton {
+    display: block;
+    background: #476b6b;
+    text-align: center;
+    color: white;
+    width: 75px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.deleteButton {
+    display: block;
+    background: #732626;
+    text-align: center;
+    color: white;
+    width: 75px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.newEntry {
+    display: block;
+    background: #264d73;
+    color: white;
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.backButton {
+    display: block;
+    background: #573F54;
+    text-align: center;
+    color: white;
+    width: 120px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.Con {
+    margin: auto;
+    text-align: center;
+    width: 90%;
+}
+
+.rightDiv {
+    background-color: #573F54;
+    opacity: .85;
+    padding: 2%;
+    height: 20%;
+    width: 39%;
+    border-style: outset;
+    border-radius: 15px;
+    border-color: white;
+    border-width: 5px;
+    margin: 20px;
+    text-align: center;
+    font-size: 300%;
+    float: right;
+}
+
+    .rightDiv:hover {
+        background-color: #856080;
+        opacity: 1.2;
+        padding: 2%;
+        height: 20%;
+        width: 39%;
+        border-style: outset;
+        border-radius: 15px;
+        border-color: white;
+        border-width: 5px;
+        margin: 20px;
+        text-align: center;
+        font-size: 300%;
+        float: right;
+    }
+a:link, a:visited {
+    text-decoration: none;
+    color: white;
+}

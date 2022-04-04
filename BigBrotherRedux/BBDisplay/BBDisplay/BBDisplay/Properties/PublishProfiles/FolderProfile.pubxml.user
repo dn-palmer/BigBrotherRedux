@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Release\net6.0\publish\</_PublishTargetUrl>
-    <History>True|2022-03-09T05:23:58.9274403Z;True|2022-03-09T00:15:19.1245034-05:00;True|2022-03-09T00:07:05.9024357-05:00;True|2022-03-08T21:56:43.5208801-05:00;</History>
+    <_PublishTargetUrl>C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\bin\Ready</_PublishTargetUrl>
+    <History>True|2022-04-04T04:21:14.8974056Z;True|2022-04-04T00:02:01.4488562-04:00;True|2022-04-03T23:30:19.3560640-04:00;True|2022-04-03T23:21:45.5808017-04:00;True|2022-04-03T23:14:33.4372627-04:00;True|2022-04-03T23:13:31.2137745-04:00;True|2022-04-03T23:06:42.8522412-04:00;True|2022-04-03T22:37:43.9476492-04:00;True|2022-03-09T00:23:58.9274403-05:00;True|2022-03-09T00:15:19.1245034-05:00;True|2022-03-09T00:07:05.9024357-05:00;True|2022-03-08T21:56:43.5208801-05:00;</History>
   </PropertyGroup>
 </Project>

@@ -19,6 +19,7 @@ namespace BBDisplay.Controllers
         //Cleaner class. So that I can get ride of the Json formmating. JSon Serialzation would have worked bettter! 
         //Note to future me.
         private PageReferenceClean cleaner = new PageReferenceClean();
+        private string apiIPaddress = "34.125.193.123";
 
         private readonly BigBrotherReduxContext _context;
 
@@ -31,18 +32,11 @@ namespace BBDisplay.Controllers
      
         public async Task<IActionResult> Index()
         {
-            /*
-            var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/PageReference/ReadAll");
+
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/PageReference/ReadAll");
             data = cleaner.RemoveSquareBraces(data);
             List<string> pageInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepPageReference(pageInf);
-            */
-            PageReference p = new PageReference();
-            p.PageId = 1;
-            p.PageDescription = "added";
-            p.DateAdded = "1-1-1999";
-            var model = new List<PageReference>();
-            model.Add(p);
             return View(model);
             
         }
@@ -51,7 +45,7 @@ namespace BBDisplay.Controllers
    
         public async Task<IActionResult> Details(string id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/GetPageReference/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/PageReference/GetPageReference/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> pageRefIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepPageReference(pageRefIn);
@@ -76,7 +70,7 @@ namespace BBDisplay.Controllers
             if (ModelState.IsValid)
             {
 
-                var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/CreatePageRefrence/{pageReference.DateAdded}/{pageReference.PageDescription}");
+                var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/PageReference/CreatePageRefrence/{pageReference.DateAdded}/{pageReference.PageDescription}");
 
             }
             return RedirectToAction("Index");
@@ -116,7 +110,7 @@ namespace BBDisplay.Controllers
             DateAdded = pageReference.DateAdded.ToString();
             PageDescription= pageReference.PageDescription.ToString();
 
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/EditPageReference/{pageID}/{DateAdded}/{PageDescription}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/PageReference/EditPageReference/{pageID}/{DateAdded}/{PageDescription}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> pagerefIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepPageReference(pagerefIn);
@@ -135,7 +129,7 @@ namespace BBDisplay.Controllers
             DateAdded = pageReference.DateAdded.ToString();
             PageDescription = pageReference.PageDescription.ToString();
 
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/EditPageReference/{pageID}/{DateAdded}/{PageDescription}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/PageReference/EditPageReference/{pageID}/{DateAdded}/{PageDescription}");
             return RedirectToAction("Index");
         }
 
@@ -146,7 +140,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/GetPageReference/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/PageReference/GetPageReference/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> pagerefIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepPageReference(pagerefIn);
@@ -159,7 +153,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/PageReference/DeletePageReference/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/PageReference/DeletePageReference/{id}");
             return RedirectToAction("Index");
         }
 

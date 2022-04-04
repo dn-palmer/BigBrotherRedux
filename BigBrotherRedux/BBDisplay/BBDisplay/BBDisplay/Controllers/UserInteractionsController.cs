@@ -10,6 +10,7 @@ namespace BBDisplay.Controllers
     {
         private HttpClient httpClient = new HttpClient(); // HttpClient used to communicate with the API
         private UserInteractionsClean dataCleaner = new UserInteractionsClean(); // Used to clean the incoming data from the API
+        private string apiIPaddress = "34.125.193.123";
 
         /// <summary>
         /// Returns all User Interactions from the database.
@@ -18,7 +19,7 @@ namespace BBDisplay.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var dataFromAPI = await httpClient.GetStringAsync("http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadAll"); // Read all of the User Interaction entries from the database
+            var dataFromAPI = await httpClient.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserInteraction/ReadAll"); // Read all of the User Interaction entries from the database
 
             dataFromAPI = dataCleaner.RemoveSquareBraces(dataFromAPI); // Remove the square brackets from the data returned by the API
 
@@ -36,7 +37,7 @@ namespace BBDisplay.Controllers
 
         public async Task<IActionResult> Details(int? id)
         {
-            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
+            var dataFromAPI = await httpClient.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
 
             dataFromAPI = dataCleaner.RemoveSquareBraces(dataFromAPI); // Remove the square brackets from the data returned by the API
 
@@ -64,7 +65,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> Create(UserInteraction userInteraction)
         {
-            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/PostInteraction/{userInteraction.DateTime}/{userInteraction.InteractionLength}/{userInteraction.UserSessionID.ToString()}/{userInteraction.CurrentPageID.ToString()}"); // Create a User Interaction within the database
+            var dataFromAPI = await httpClient.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserInteraction/PostInteraction/{userInteraction.DateTime}/{userInteraction.InteractionLength}/{userInteraction.UserSessionID.ToString()}/{userInteraction.CurrentPageID.ToString()}"); // Create a User Interaction within the database
 
             return RedirectToAction("Index"); // Redirect to the Index page once the task has completed
         }
@@ -77,7 +78,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
-            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
+            var dataFromAPI = await httpClient.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
 
             dataFromAPI = dataCleaner.RemoveSquareBraces(dataFromAPI); // Remove the square brackets from the data returned by the API
 
@@ -98,7 +99,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> EditPost(int id, [Bind("UserInteractionID,UserSessionID,DateTime,CurrentPageID,InteractionLength")] UserInteraction userInteraction)
         {
-            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/EditInteraction/{userInteraction.DateTime}/{userInteraction.InteractionLength}/{userInteraction.UserSessionID.ToString()}/{userInteraction.CurrentPageID.ToString()}"); // Edit the specified User Interaction within the database
+            var dataFromAPI = await httpClient.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserInteraction/EditInteraction/{userInteraction.DateTime}/{userInteraction.InteractionLength}/{userInteraction.UserSessionID.ToString()}/{userInteraction.CurrentPageID.ToString()}"); // Edit the specified User Interaction within the database
 
             return RedirectToAction("Index"); // Redirect to the Index page once the task has completed
         }
@@ -111,7 +112,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            var dataFromAPI = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
+            var dataFromAPI = await httpClient.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserInteraction/ReadInteraction/{id}"); // Read the specified User Interaction entry from the database
 
             dataFromAPI = dataCleaner.RemoveSquareBraces(dataFromAPI); // Remove the square brackets from the data returned by the API
 
@@ -132,7 +133,7 @@ namespace BBDisplay.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dataFromAPi = await httpClient.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/UserInteraction/DeleteInteraction/{id}"); // Delete the specified User Interaction within the database
+            var dataFromAPi = await httpClient.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/UserInteraction/DeleteInteraction/{id}"); // Delete the specified User Interaction within the database
 
             return RedirectToAction("Index"); // Redirect to the Index page once the task has completed
         }

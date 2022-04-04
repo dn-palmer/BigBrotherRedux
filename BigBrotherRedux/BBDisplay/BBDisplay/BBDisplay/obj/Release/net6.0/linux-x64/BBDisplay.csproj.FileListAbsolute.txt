@@ -253,3 +253,4 @@ C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisp
 C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\obj\Release\net6.0\linux-x64\ref\BBDisplay.dll
 C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\obj\Release\net6.0\linux-x64\BBDisplay.pdb
 C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\obj\Release\net6.0\linux-x64\BBDisplay.genruntimeconfig.cache
+C:\Users\quite\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\BBDisplay\BBDisplay\BBDisplay\obj\Release\net6.0\linux-x64\BBDisplay.csproj.AssemblyReference.cache

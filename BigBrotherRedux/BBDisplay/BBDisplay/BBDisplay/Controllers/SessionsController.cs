@@ -19,6 +19,7 @@ namespace BBDisplay.Controllers
         //Cleaner class. So that I can get ride of the Json formmating. JSon Serialzation would have worked bettter! 
         //Note to future me.
         private SessionsClean cleaner = new SessionsClean();
+        private string apiIPaddress = "34.125.193.123";
 
 
 
@@ -29,7 +30,7 @@ namespace BBDisplay.Controllers
         {
             SessionsClean cleaner = new SessionsClean();
 
-            var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/Session/ReadAll");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/Session/ReadAll");
                 data = cleaner.RemoveSquareBraces(data);
                 List<string> sessIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
                 var model = cleaner.IndexPrepSessions(sessIn);
@@ -44,7 +45,7 @@ namespace BBDisplay.Controllers
 
         public async Task<IActionResult> Details(string id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/GetSession/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/Session/GetSession/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> sessIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepSessions(sessIn);
@@ -75,7 +76,7 @@ namespace BBDisplay.Controllers
             login = session.LoggedIn;
             purchase = session.PurchaseMade;
 
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/CreateSession/{ip}/{date}/{login}/{purchase}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/Session/CreateSession/{ip}/{date}/{login}/{purchase}");
             return RedirectToAction("Index");
         }
 
@@ -84,7 +85,7 @@ namespace BBDisplay.Controllers
 
         public async Task<IActionResult> Edit(int? id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/GetSession/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/Session/GetSession/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> sessIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepSessions(sessIn);
@@ -106,7 +107,7 @@ namespace BBDisplay.Controllers
             login = session.LoggedIn;
             purchase = session.PurchaseMade;
 
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/EditSession/{id}/{ip}/{date}/{login}/{purchase}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/Session/EditSession/{id}/{ip}/{date}/{login}/{purchase}");
             return RedirectToAction("Index");      
         }
 
@@ -115,7 +116,7 @@ namespace BBDisplay.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/GetSession/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}BigBrotherRedux/Session/GetSession/{id}");
             data = cleaner.RemoveSquareBraces(data);
             List<string> sessIn = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
             var model = cleaner.IndexPrepSessions(sessIn);
@@ -129,7 +130,7 @@ namespace BBDisplay.Controllers
 
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var data = await client.GetStringAsync($"http://52.168.32.232/BigBrotherRedux/Session/DeleteSession/{id}");
+            var data = await client.GetStringAsync($"http://{apiIPaddress}/BigBrotherRedux/Session/DeleteSession/{id}");
             return RedirectToAction("Index");
         }
 
