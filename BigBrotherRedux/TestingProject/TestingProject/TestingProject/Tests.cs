@@ -281,20 +281,34 @@ namespace TestingProject
 
         public void PageRefDeleteButton()
         {
-            driver.Navigate().GoToUrl("http://34.125.84.24/PageReferences");
-
-
-            //Make sure the create new button is displaying for all entries
-            Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
-
-
-            //Make sure each button is going to the correct entry
-            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
-
-            for (int i = 0; i < Entries.Count; i++)
+            Task.Run(async () =>
             {
-                Assert.Equals(Entries[i].GetAttribute("href"), $"/PageReferences/Delete/{i}");
+                driver.Navigate().GoToUrl("http://34.125.84.24/PageReferences");
+
+
+                //Make sure the create new button is displaying for all entries
+                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+
+                HttpClient client = new HttpClient();
+                PageReferenceClean cleaner = new PageReferenceClean();
+                //Make sure text is correct
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/PageReference/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> pageInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepPageReference(pageInf);
+
+
+
+                //Make sure each button is going to the correct entry
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+
+                for (int i = 0; i < Entries.Count; i++)
+                {
+                    Assert.AreEqual(Entries[i].GetAttribute("href"), $"http://34.125.84.24/PageReferences/Delete/{model[i].PageId}");
+                }
             }
+
+            ).GetAwaiter().GetResult();
         }
 
         [Test]
@@ -320,6 +334,8 @@ namespace TestingProject
                 data = cleaner.RemoveSquareBraces(data);
                 List<string> pageInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
                 var model = cleaner.IndexPrepPageReference(pageInf);
+
+
                 for (int i = 0; i < model.Count; i++)
                 {
                     Console.WriteLine(model[i].PageId);
@@ -331,7 +347,7 @@ namespace TestingProject
                 Assert.AreEqual(Entries[caseState - 1].GetAttribute("href"), $"http://34.125.84.24/PageReferences/Delete/{model[caseState-1].PageId}"); 
                 var element = driver.FindElements(By.ClassName("deleteButton"));
                 element[caseState - 1].Click();
-                element = driver.FindElements(By.ClassName("deleteButton"));
+                element = driver.FindElements(By.CssSelector("input[class = 'btn btn-danger']"));
                 element[0].Click();
 
             }
