@@ -49,7 +49,103 @@ namespace TestingProject
             //driver= new FirefoxDriver(path + @"\drivers\");
 
         }
+        #region HomePage
 
+        [Test]
+        public void HomeNavHome()
+        {
+
+        }
+
+        [Test]
+        public void HomeNavIPButtonToUserIPPage()
+        {
+
+        }
+
+        [Test]
+        public void HomeNavPageRefButtonToPageRefPage()
+        {
+
+        }
+
+
+        [Test]
+        public void HomeNavUserInteractionButtonToUserInteractionPage()
+        {
+
+        }
+
+        [Test]
+        public void HomeNavSessionsButtonToSessionsPage()
+        {
+            driver.Navigate().GoToUrl("https://localhost:7281");
+
+
+            var element = driver.FindElements(By.ClassName("rightDiv"));
+            element[0].Click();
+
+            Assert.AreEqual(driver.Url, "https://localhost:7281/UserIPDatas");
+        }
+
+        [Test]
+        public void HomePurpleNavIPButtonToUserIPPage()
+        {
+            driver.Navigate().GoToUrl("https://localhost:7281");
+
+
+            var element = driver.FindElements(By.ClassName("rightDiv"));
+            element[0].Click();
+
+            Assert.AreEqual(driver.Url, "https://localhost:7281/UserIPDatas");
+
+
+        }
+
+        [Test]
+        public void HomePurpleNavPageRefButtonToPageRefPage()
+        {
+            driver.Navigate().GoToUrl("https://localhost:7281");
+
+
+            var element = driver.FindElements(By.ClassName("rightDiv"));
+
+            element[3].Click();
+
+            Assert.AreEqual(driver.Url, "https://localhost:7281/PageReference");
+
+        }
+
+
+        [Test]
+        public void HomePurpleNavUserInteractionButtonToUserInteractionPage()
+        {
+            driver.Navigate().GoToUrl("https://localhost:7281");
+
+
+            var element = driver.FindElements(By.ClassName("rightDiv"));
+
+            element[1].Click();
+
+            Assert.AreEqual(driver.Url, "https://localhost:7281/UserInteractions");
+        }
+
+        [Test]
+        public void HomePurpleSessionsButtonToSessionsPage()
+        {
+            driver.Navigate().GoToUrl("https://localhost:7281");
+
+
+            var element = driver.FindElements(By.ClassName("rightDiv"));
+
+            element[2].Click();
+
+            Assert.AreEqual(driver.Url, "https://localhost:7281/Sessions");
+
+
+        }
+
+        #endregion
 
         #region PageRefTests
         [Test]
@@ -81,7 +177,7 @@ namespace TestingProject
                 {
                     Console.WriteLine(text);
                 }*/
-
+/*
                 List<IWebElement> lstTdElem = new List<IWebElement>(driver.FindElements(By.TagName("td")));
                 if (lstTdElem.Count > 0)
                 {
@@ -90,7 +186,7 @@ namespace TestingProject
                         Assert.Equals(lstTdElem[i], model[i]);
 
                     }
-                }
+                }*/
             }
             
             ).GetAwaiter().GetResult();
