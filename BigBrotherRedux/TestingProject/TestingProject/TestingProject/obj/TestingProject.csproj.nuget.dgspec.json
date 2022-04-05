@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zakkt\\Documents\\GitHub\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj": {}
+    "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zakkt\\Documents\\GitHub\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj": {
+    "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zakkt\\Documents\\GitHub\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj",
+        "projectUniqueName": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj",
         "projectName": "TestingProject",
-        "projectPath": "C:\\Users\\zakkt\\Documents\\GitHub\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj",
-        "packagesPath": "C:\\Users\\zakkt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zakkt\\Documents\\GitHub\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\obj\\",
+        "projectPath": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj",
+        "packagesPath": "C:\\Users\\emcat\\.nuget\\packages\\",
+        "outputPath": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\zakkt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emcat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

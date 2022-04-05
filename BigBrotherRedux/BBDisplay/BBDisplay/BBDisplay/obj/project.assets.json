@@ -9861,23 +9861,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sethn\\.nuget\\packages\\": {},
+    "C:\\Users\\emcat\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sethn\\Documents\\MainComputer\\Software Engineering II\\SE2\\BigBrotherRedux\\BigBrotherRedux\\BBDisplay\\BBDisplay\\BBDisplay\\BBDisplay.csproj",
+      "projectUniqueName": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\BBDisplay\\BBDisplay\\BBDisplay\\BBDisplay.csproj",
       "projectName": "BBDisplay",
-      "projectPath": "C:\\Users\\sethn\\Documents\\MainComputer\\Software Engineering II\\SE2\\BigBrotherRedux\\BigBrotherRedux\\BBDisplay\\BBDisplay\\BBDisplay\\BBDisplay.csproj",
-      "packagesPath": "C:\\Users\\sethn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sethn\\Documents\\MainComputer\\Software Engineering II\\SE2\\BigBrotherRedux\\BigBrotherRedux\\BBDisplay\\BBDisplay\\BBDisplay\\obj\\",
+      "projectPath": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\BBDisplay\\BBDisplay\\BBDisplay\\BBDisplay.csproj",
+      "packagesPath": "C:\\Users\\emcat\\.nuget\\packages\\",
+      "outputPath": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\BBDisplay\\BBDisplay\\BBDisplay\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\sethn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\emcat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -9957,7 +9957,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
