@@ -49,283 +49,148 @@ namespace TestingProject
             //driver= new FirefoxDriver(path + @"\drivers\");
 
         }
+
         #region HomePage
-
+        // This will test if the big brother display button on the home page goes to the home page
         [Test]
-        public void HomeNavHome()
+        public void bigBrotherDisplayToHome()
         {
-
+            driver.Navigate().GoToUrl("http://34.125.84.24/");
+            driver.FindElement(By.LinkText("Big Brother Display")).Click();
+            String actualUrl = "http://34.125.84.24/";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
+        // This will test if the home button on the home page goes to the home page
         [Test]
-        public void HomeNavIPButtonToUserIPPage()
+        public void homeToHome()
         {
-
+            driver.Navigate().GoToUrl("http://34.125.84.24/");
+            driver.FindElement(By.LinkText("Home")).Click();
+            String actualUrl = "http://34.125.84.24/";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
+        // This will test if the login button on the home page goes to the login page
         [Test]
-        public void HomeNavPageRefButtonToPageRefPage()
+        public void toLogin()
         {
-
+            driver.Navigate().GoToUrl("http://34.125.84.24/");
+            driver.FindElement(By.LinkText("Login")).Click();
+            String actualUrl = "http://34.125.84.24/Identity/Account/Login";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
-
+        // This will test if the user ip data button on the home page goes to the user ip data page while logged in
         [Test]
-        public void HomeNavUserInteractionButtonToUserInteractionPage()
+        public void toUserIPData()
         {
-
+            driver.Navigate().GoToUrl("http://34.125.84.24/");
+            driver.FindElement(By.LinkText("User IP Data")).Click();
+            String actualUrl = "http://34.125.84.24/UserIpDatas";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
+        // This will test if the page reference data button on the home page goes to the page reference data page while logged in
         [Test]
-        public void HomeNavSessionsButtonToSessionsPage()
+        public void toPageReferenceData()
         {
-            driver.Navigate().GoToUrl("https://localhost:7281");
-
-
-            var element = driver.FindElements(By.ClassName("rightDiv"));
-            element[0].Click();
-
-            Assert.AreEqual(driver.Url, "https://localhost:7281/UserIPDatas");
+            driver.Navigate().GoToUrl("http://34.125.84.24/");
+            driver.FindElement(By.LinkText("Page Reference Data")).Click();
+            String actualUrl = "http://34.125.84.24/PageReferences";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
+        // This will test if the user interactions data button on the home page goes to the user interactions data page while logged in
         [Test]
-        public void HomePurpleNavIPButtonToUserIPPage()
+        public void toUserInteractionsData()
         {
-            driver.Navigate().GoToUrl("https://localhost:7281");
-
-
-            var element = driver.FindElements(By.ClassName("rightDiv"));
-            element[0].Click();
-
-            Assert.AreEqual(driver.Url, "https://localhost:7281/UserIPDatas");
-
-
+            driver.Navigate().GoToUrl("http://34.125.84.24/");
+            driver.FindElement(By.LinkText("User Interactions Data")).Click();
+            String actualUrl = "http://34.125.84.24/UserInteractions";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
+        // This will test if the sessions button on the home page goes to the sessions page while logged in
         [Test]
-        public void HomePurpleNavPageRefButtonToPageRefPage()
+        public void toSessions()
         {
-            driver.Navigate().GoToUrl("https://localhost:7281");
-
-
-            var element = driver.FindElements(By.ClassName("rightDiv"));
-
-            element[3].Click();
-
-            Assert.AreEqual(driver.Url, "https://localhost:7281/PageReference");
-
+            driver.Navigate().GoToUrl("http://34.125.84.24/");
+            driver.FindElement(By.LinkText("Sessions")).Click();
+            String actualUrl = "http://34.125.84.24/Sessions";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
-
+        // This will test if the register button on the home page goes to the registration page while logged in as an admin
         [Test]
-        public void HomePurpleNavUserInteractionButtonToUserInteractionPage()
+        public void toRegister()
         {
-            driver.Navigate().GoToUrl("https://localhost:7281");
-
-
-            var element = driver.FindElements(By.ClassName("rightDiv"));
-
-            element[1].Click();
-
-            Assert.AreEqual(driver.Url, "https://localhost:7281/UserInteractions");
+            driver.Navigate().GoToUrl("http://34.125.84.24/");
+            driver.FindElement(By.LinkText("Register")).Click();
+            String actualUrl = "http://34.125.84.24/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FRegister";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
-
-        [Test]
-        public void HomePurpleSessionsButtonToSessionsPage()
-        {
-            driver.Navigate().GoToUrl("https://localhost:7281");
-
-
-            var element = driver.FindElements(By.ClassName("rightDiv"));
-
-            element[2].Click();
-
-            Assert.AreEqual(driver.Url, "https://localhost:7281/Sessions");
-
-
-        }
-
         #endregion
 
-        #region PageRefTests
+        #region Login
+        // This will test if someone can login with proper credentials
         [Test]
-        public void PageRefEntries()
+        public void logInPass()
         {
-
-            Task.Run(async () =>
-            {
-
-                driver.Navigate().GoToUrl("https://localhost:7281/PageReferences");
-
-
-                //Make sure the details button is displaying
-                Assert.IsTrue(driver.FindElement(By.ClassName("detailsButton")).Displayed);
-
-
-
-
-                //HttpClient client = new HttpClient();
-                //PageReferenceClean cleaner = new PageReferenceClean();
-                //Make sure text is correct
-
-                /*
-                var data = await client.GetStringAsync("http://52.168.32.232/BigBrotherRedux/PageReference/ReadAll");
-                data = cleaner.RemoveSquareBraces(data);
-                List<string> pageInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
-                var model = cleaner.IndexPrepPageReference(pageInf);
-                foreach (var text in model)
-                {
-                    Console.WriteLine(text);
-                }*/
-/*
-                List<IWebElement> lstTdElem = new List<IWebElement>(driver.FindElements(By.TagName("td")));
-                if (lstTdElem.Count > 0)
-                {
-                    for (int i=0; i < lstTdElem.Count; i++)
-                    {
-                        Assert.Equals(lstTdElem[i], model[i]);
-
-                    }
-                }*/
-            }
-            
-            ).GetAwaiter().GetResult();
-           
+            driver.Navigate().GoToUrl("http://34.125.84.24/Identity/Account/Login");
+            IWebElement username = driver.FindElement(By.Name("Input.Email"));
+            username.SendKeys("LoneWolf@email.com");
+            IWebElement password = driver.FindElement(By.Name("Input.Password"));
+            password.SendKeys("Passw0rd!");
+            var element = driver.FindElements(By.Id("login-submit"));
+            element[0].Click();
+            String actualUrl = "http://34.125.84.24/";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
+        // This will test if someone can login with phony credentials
         [Test]
-
-        public void DetailsButton()
+        public void logInFail()
         {
-            driver.Navigate().GoToUrl("https://localhost:7281/PageReferences");
-
-
-            //Make sure the create new button is displaying for all entries
-            Assert.IsTrue(driver.FindElement(By.ClassName("detailsButton")).Displayed);
-
-
-            //Make sure each button is going to the correct entry
-            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("detailsButton"));
-
-            for (int i = 0; i < Entries.Count; i++)
-            {
-                Assert.Equals(Entries[i], $"/PageReferences/Details/{i}");
-            }
-           
+            driver.Navigate().GoToUrl("http://34.125.84.24/Identity/Account/Login");
+            IWebElement username = driver.FindElement(By.Name("Input.Email"));
+            username.SendKeys("Fake@email.com");
+            IWebElement password = driver.FindElement(By.Name("Input.Password"));
+            password.SendKeys("Password!");
+            var element = driver.FindElements(By.Id("login-submit"));
+            element[0].Click();
+            String actualUrl = "http://34.125.84.24/Identity/Account/Login";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
+        #endregion
 
+        #region Register
+        // This will test if the registration page works for an admin once logged in
         [Test]
-
-        public void CreateButton()
+        public void registerPass()
         {
-            driver.Navigate().GoToUrl("https://localhost:7281/PageReferences");
-
-
-            //Make sure the create new button is displaying for all entries
-            Assert.IsTrue(driver.FindElement(By.ClassName("newEntry")).Displayed);
-
-            //Make sure each button is going to the correct entry
-            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("detailsButton"));
-
-            for (int i = 0; i < Entries.Count; i++)
-            {
-                Assert.Equals(Entries[i], $"/PageReferences/Create");
-            }
+            driver.Navigate().GoToUrl("http://34.125.84.24/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FRegister");
+            IWebElement username = driver.FindElement(By.Name("Input.Email"));
+            username.SendKeys("Lonewolf@email.com");
+            IWebElement password = driver.FindElement(By.Name("Input.Password"));
+            password.SendKeys("Passw0rd!");
+            var element = driver.FindElements(By.Id("login-submit"));
+            element[0].Click();
+            String actualUrl = "http://34.125.84.24/Identity/Account/Register";
+            String expectedUrl = driver.Url;
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
-
-        [Test]
-
-        public void DeleteButton()
-        {
-            driver.Navigate().GoToUrl("https://localhost:7281/PageReferences");
-
-
-            //Make sure the create new button is displaying for all entries
-            Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
-
-
-            //Make sure each button is going to the correct entry
-            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
-
-            for (int i = 0; i < Entries.Count; i++)
-            {
-                Assert.Equals(Entries[i], $"/PageReferences/Delete/{i}");
-            }
-        }
-
-        [Test]
-
-        public void DeleteEntry()
-        {
-            //navigate to the page reference page from the home page
-
-            //check entries on page
-
-            //Select delte entry
-
-            //Select back
-
-            //ensure entries are the same
-        }
-
-        [Test]
-
-        public void BackDetails()
-        {
-            //navigate to the page reference page from the home page
-
-            //check entries on page
-
-            //Select delte entry
-
-            //Select back
-
-            //ensure entries are the same
-
-        }
-
-        [Test]
-
-        public void BackDelete()
-        {
-            //navigate to the page reference page from the home page
-
-            //check entries on page
-
-            //Select delte entry
-
-            //Select back
-
-            //ensure entries are the same
-        }
-
-        [Test]
-
-        public void BackCreate()
-        {
-            //navigate to the page reference page from the home page
-
-
-            //check entries on page
-
-            //Select create entry
-
-            //Select back
-
-            //ensure entries are the same
-        }
-        #endregion PageRefTests
-
-        [Test]
-
-        public void verifyLogo()
-        {
-
-            driver.Navigate().GoToUrl("https://localhost:7281/");
-
-            Assert.IsTrue(driver.FindElement(By.ClassName("rightDiv")).Displayed);
-
-        }
+        #endregion
 
         [OneTimeTearDown]
 

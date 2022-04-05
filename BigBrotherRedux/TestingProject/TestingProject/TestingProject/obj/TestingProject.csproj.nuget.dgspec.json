@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sethn\\Documents\\MainComputer\\Software Engineering II\\SE2\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj": {}
+    "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sethn\\Documents\\MainComputer\\Software Engineering II\\SE2\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj": {
+    "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sethn\\Documents\\MainComputer\\Software Engineering II\\SE2\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj",
+        "projectUniqueName": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj",
         "projectName": "TestingProject",
-        "projectPath": "C:\\Users\\sethn\\Documents\\MainComputer\\Software Engineering II\\SE2\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj",
-        "packagesPath": "C:\\Users\\sethn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sethn\\Documents\\MainComputer\\Software Engineering II\\SE2\\BigBrotherRedux\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\obj\\",
+        "projectPath": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\TestingProject.csproj",
+        "packagesPath": "C:\\Users\\emcat\\.nuget\\packages\\",
+        "outputPath": "E:\\ETSU\\Spring 2022\\Software Engineering II CSCI 4350-001\\Project\\BigBrotherProject\\BigBrotherRedux\\TestingProject\\TestingProject\\TestingProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sethn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emcat\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
