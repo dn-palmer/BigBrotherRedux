@@ -474,7 +474,8 @@ namespace TestingProject
 
           ).GetAwaiter().GetResult();
 		}
-		
+        #endregion
+
         #region Login
         // This will test if someone can login with proper credentials
         [Test]
@@ -755,6 +756,111 @@ namespace TestingProject
                 element[0].Click();
             }).GetAwaiter().GetResult();
         }
+
+        /// <summary>
+        /// Makes sure the Back button on details works and nothing changes.
+        /// </summary>
+        [Test]
+        public void UserInteractionsBackDetails()
+        {
+            Task.Run(async () =>
+            {
+                //navigate to the page reference page from the home page
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
+
+                HttpClient client = new HttpClient();
+                UserInteractionsClean cleaner = new UserInteractionsClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserInteraction/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
+
+                List<int> UserInteractionIDs = new List<int>();
+
+                for (int i = 0; i < model.Count; i++)
+                {
+                    Console.WriteLine(model[i].UserInteractionID);
+                    UserInteractionIDs.Add(model[i].UserInteractionID);
+                }
+
+                //Init TR elements from table we found into list
+                IList<IWebElement> trCollection = driver.FindElements(By.TagName("tr"));
+
+                for (int i = 0; i < trCollection.Count; i++)
+                {
+                    Console.WriteLine(trCollection[i].Text);
+                }
+
+                driver.Navigate().GoToUrl($"http://34.125.84.24/UserInteractions/Details/{model[0].UserInteractionID}");
+
+                //Select back
+                var element = driver.FindElements(By.ClassName("backButton"));
+                element[0].Click();
+
+                data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserInteraction/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
+
+                //ensure entries are the same
+                for (int i = 0; i < UserInteractionIDs.Count; i++)
+                {
+                    Assert.AreEqual(UserInteractionIDs[i], model[i].UserInteractionID);
+                }
+            }).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Makes sure the Back button on Delete works and nothing changes
+        /// </summary>
+        [Test]
+        public void UserInteractionsBackDelete()
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
+
+                HttpClient client = new HttpClient();
+                UserInteractionsClean cleaner = new UserInteractionsClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserInteraction/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
+
+                List<int> UserInteractionIDs = new List<int>();
+
+                for (int i = 0; i < model.Count; i++)
+                {
+                    Console.WriteLine(model[i].UserInteractionID);
+                    UserInteractionIDs.Add(model[i].UserInteractionID);
+                }
+
+                //Init TR elements from table we found into list
+                IList<IWebElement> trCollection = driver.FindElements(By.TagName("tr"));
+
+                for (int i = 0; i < trCollection.Count; i++)
+                {
+                    Console.WriteLine(trCollection[i].Text);
+                }
+
+                driver.Navigate().GoToUrl($"http://34.125.84.24/UserInteractions/Delete/{model[0].UserInteractionID}");
+
+                var element = driver.FindElements(By.ClassName("backButton"));
+                element[0].Click();
+
+                data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserInteraction/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
+
+                for (int i = 0; i < UserInteractionIDs.Count; i++)
+                {
+                    Assert.AreEqual(UserInteractionIDs[i], model[i].UserInteractionID);
+                }
+            }).GetAwaiter().GetResult();
+        }
         #endregion
 
         #region SessionsTests
@@ -883,15 +989,9 @@ namespace TestingProject
         #endregion
 
         [OneTimeTearDown]
-
         public void TearDown()
-
         {
-
             driver.Quit();
-
         }
-
     }
-
 }

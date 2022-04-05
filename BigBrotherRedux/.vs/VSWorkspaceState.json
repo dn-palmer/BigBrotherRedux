@@ -9,8 +9,9 @@
     "\\BigBrotherRedux",
     "\\BigBrotherRedux\\Controllers",
     "\\TestingProject",
-    "\\TestingProject\\TestingProject"
+    "\\TestingProject\\TestingProject",
+    "\\TestingProject\\TestingProject\\TestingProject"
   ],
-  "SelectedNode": "\\TestingProject\\TestingProject\\TestingProject.sln",
+  "SelectedNode": "\\TestingProject\\TestingProject\\TestingProject\\Tests.cs",
   "PreviewInSolutionExplorer": false
 }
