@@ -85,7 +85,9 @@ namespace TestingProject
         public void toLogin()
         {
             driver.Navigate().GoToUrl("http://34.125.84.24/");
-            driver.FindElement(By.LinkText("Login")).Click();
+            driver.FindElement(By.Id("logout")).Click();
+
+            driver.FindElement(By.Id("login")).Click();
             String actualUrl = "http://34.125.84.24/Identity/Account/Login";
             String expectedUrl = driver.Url;
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -140,10 +142,305 @@ namespace TestingProject
         public void toRegister()
         {
             driver.Navigate().GoToUrl("http://34.125.84.24/");
-            driver.FindElement(By.LinkText("Register")).Click();
+            
+            driver.FindElement(By.Id("logout")).Click();
+
+            driver.FindElement(By.Id("register")).Click();
             String actualUrl = "http://34.125.84.24/Identity/Account/Login?ReturnUrl=%2FIdentity%2FAccount%2FRegister";
             String expectedUrl = driver.Url;
             Assert.AreEqual(expectedUrl, actualUrl);
+        }
+        #endregion
+
+        #region UserIP
+        /// <summary>
+        /// Checks the format for all entries on the User IP page.
+        /// </summary>
+        [Test]
+        public void UserIPEntries()
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserIpDatas");
+
+                HttpClient client = new HttpClient();
+                IPDataClean cleaner = new IPDataClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserIPData/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userIPInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepIPData(userIPInf);
+
+                List<IWebElement> lstTdElem = new List<IWebElement>(driver.FindElements(By.TagName("td")));
+
+                for (int i = 0; i < lstTdElem.Count; i++)
+                {
+                    Console.WriteLine("element: " + lstTdElem[i].Text);
+                }
+
+                if (lstTdElem.Count > 0)
+                {
+                    for (int i = 0; i < model.Count; i++)
+                    {
+                        Assert.AreEqual(lstTdElem[(9 * i)].Text, model[i].UserIP);
+                        Assert.AreEqual(lstTdElem[1 + (9 * i)].Text, model[i].CountryCode);
+                        Assert.AreEqual(lstTdElem[2 + (9 * i)].Text, model[i].CountryName);
+                        Assert.AreEqual(lstTdElem[3 + (9 * i)].Text, model[i].StateOrRegion);
+                        Assert.AreEqual(lstTdElem[4 + (9 * i)].Text, model[i].City);
+                        Assert.AreEqual(lstTdElem[5 + (9 * i)].Text, model[i].ZipCode);
+                        Assert.AreEqual(Convert.ToInt32(lstTdElem[6 + (9 * i)].Text), model[i].VisitCount);
+                        Assert.AreEqual(lstTdElem[7 + (9 * i)].Text, model[i].DeviceType);
+                    }
+                }
+            }).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Checks the format for all entries on the User IP page.
+        /// </summary>
+        [Test]
+        [TestCase("169.46.237.81")]
+        [TestCase("83.225.100.223")]
+        [TestCase("218.182.163.213")]
+        [TestCase("164.255.62.67")]
+        [TestCase("168.164.53.89")]
+        [TestCase("51.69.123.101")]
+        public void UserIPCreate(string ip)
+        {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserIpDatas");
+
+
+                //Make sure the create new button is displaying for all entries
+                Assert.IsTrue(driver.FindElement(By.ClassName("newEntry")).Displayed);
+
+                //Make sure each button is going to the correct entry
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("newEntry"));
+
+                for (int i = 0; i<Entries.Count; i++)
+                {
+                    Console.WriteLine(Entries[i].GetAttribute("href"));
+                    Assert.AreEqual(Entries[i].GetAttribute("href"), $"http://34.125.84.24/UserIPDatas/Create");
+                }
+
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserIPDatas/Create");
+
+                IWebElement UserIPWeb = driver.FindElement(By.Name("UserIP"));
+                UserIPWeb.SendKeys(ip);
+
+                var element = driver.FindElements(By.CssSelector("input[class = 'btn btn-danger']"));
+                element[0].Click();
+        }
+
+        /// <summary>
+        /// Checks to ensure that the Details button works properly.
+        /// </summary>
+        /// <param name="index">Index of the User IP to check.</param>
+        [Test]
+        [TestCase(0)]
+        public void UserIPDetailsButton(int index)
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserIpDatas");
+
+                //Make sure the create new button is displaying for all entries
+                Assert.IsTrue(driver.FindElement(By.ClassName("detailsButton")).Displayed);
+
+                //Make sure each button is going to the correct entry
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("detailsButton"));
+
+                HttpClient client = new HttpClient();
+                IPDataClean cleaner = new IPDataClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserIPData/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userIPInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepIPData(userIPInf);
+
+                driver.Navigate().GoToUrl($"http://34.125.84.24/UserIpDatas/Details/{model[index].UserIP}");
+
+            }).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Checks to ensure that the Delete button is displaying for all entries.
+        /// </summary>
+        [Test]
+        public void UserIPDeleteButton()
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserIpDatas");
+
+                //Make sure the create new button is displaying for all entries
+                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+
+                HttpClient client = new HttpClient();
+                IPDataClean cleaner = new IPDataClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserIPData/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userIPInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepIPData(userIPInf);
+
+                //Make sure each button is going to the correct entry
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+
+                for (int i = 0; i < Entries.Count; i++)
+                {
+                    Assert.AreEqual(Entries[i].GetAttribute("href"), $"http://34.125.84.24/UserIPDatas/Delete/{model[i].UserIP}");
+                }
+            }).GetAwaiter().GetResult();
+        }
+
+        [Test]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+
+        public void UserIPDeleteEntry(int caseState)
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserIpDatas/");
+
+
+                //Make sure the create new button is displaying for all entries
+                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+
+
+                HttpClient client = new HttpClient();
+                IPDataClean cleaner = new IPDataClean();
+                //Make sure text is correct
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserIpData/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> pageInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepIPData(pageInf);
+
+
+                for (int i = 0; i < model.Count; i++)
+                {
+                    Console.WriteLine(model[i].UserIP);
+                }
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+
+                Console.WriteLine(model[caseState - 1].UserIP);
+                Console.WriteLine(Entries[caseState - 1].GetAttribute("href"));
+                Assert.AreEqual(Entries[caseState - 1].GetAttribute("href"), $"http://34.125.84.24/UserIPDatas/Delete/{model[caseState - 1].UserIP}");
+                var element = driver.FindElements(By.ClassName("deleteButton"));
+                element[caseState - 1].Click();
+                element = driver.FindElements(By.CssSelector("input[class = 'btn btn-danger']"));
+                element[0].Click();
+
+            }
+
+            ).GetAwaiter().GetResult();
+
+        }
+
+        /// <summary>
+        /// Makes sure the Back button on details works and nothing changes.
+        /// </summary>
+        [Test]
+        public void UserIPBackDetails()
+        {
+            Task.Run(async () =>
+            {
+                //navigate to the page reference page from the home page
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserIpDatas");
+
+                HttpClient client = new HttpClient();
+                IPDataClean cleaner = new IPDataClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserIPData/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userIPInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepIPData(userIPInf);
+
+                List<string> UserIPs = new List<string>();
+
+                for (int i = 0; i < model.Count; i++)
+                {
+                    Console.WriteLine(model[i].UserIP);
+                    UserIPs.Add(model[i].UserIP);
+                }
+
+                //Init TR elements from table we found into list
+                IList<IWebElement> trCollection = driver.FindElements(By.TagName("tr"));
+
+                for (int i = 0; i < trCollection.Count; i++)
+                {
+                    Console.WriteLine(trCollection[i].Text);
+                }
+
+                driver.Navigate().GoToUrl($"http://34.125.84.24/UserIPDatas/Details/{model[0].UserIP}");
+
+                //Select back
+                var element = driver.FindElements(By.ClassName("backButton"));
+                element[0].Click();
+
+                data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserIPData/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                userIPInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                model = cleaner.IndexPrepIPData(userIPInf);
+
+                //ensure entries are the same
+                for (int i = 0; i < UserIPs.Count; i++)
+                {
+                    Assert.AreEqual(UserIPs[i], model[i].UserIP);
+                }
+            }).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Makes sure the Back button on Delete works and nothing changes
+        /// </summary>
+        [Test]
+        public void UserIPsBackDelete()
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserIpDatas");
+
+                HttpClient client = new HttpClient();
+                IPDataClean cleaner = new IPDataClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserIPData/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepIPData(userInteractionInf);
+
+                List<string> IPIDs = new List<string>();
+
+                for (int i = 0; i < model.Count; i++)
+                {
+                    Console.WriteLine(model[i].UserIP);
+                    IPIDs.Add(model[i].UserIP);
+                }
+
+                //Init TR elements from table we found into list
+                IList<IWebElement> trCollection = driver.FindElements(By.TagName("tr"));
+
+                for (int i = 0; i < trCollection.Count; i++)
+                {
+                    Console.WriteLine(trCollection[i].Text);
+                }
+
+                driver.Navigate().GoToUrl($"http://34.125.84.24/UserIpDatas/Delete/{model[0].UserIP}");
+
+                var element = driver.FindElements(By.ClassName("backButton"));
+                element[0].Click();
+
+                data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserIPData/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                model = cleaner.IndexPrepIPData(userInteractionInf);
+
+                for (int i = 0; i < IPIDs.Count; i++)
+                {
+                    Assert.AreEqual(IPIDs[i], model[i].UserIP);
+                }
+            }).GetAwaiter().GetResult();
         }
         #endregion
 
