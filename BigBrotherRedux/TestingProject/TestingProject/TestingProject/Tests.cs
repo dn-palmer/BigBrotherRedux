@@ -545,8 +545,194 @@ namespace TestingProject
         }
         #endregion PageRefTests
 
+        #region UserInteractionsTests        
+        /// <summary>
+        /// Checks the format for all entries on the User Interaction page
+        /// </summary>
+        [Test]
+        public void UserInteractionsEntries()
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
 
+                HttpClient client = new HttpClient();
+                UserInteractionsClean cleaner = new UserInteractionsClean();
 
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserInteraction/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
+
+                List<IWebElement> lstTdElem = new List<IWebElement>(driver.FindElements(By.TagName("td")));
+
+                for (int i = 0; i < lstTdElem.Count; i++)
+                {
+                    Console.WriteLine("element: " + lstTdElem[i].Text);
+                }
+
+                if (lstTdElem.Count > 0)
+                {
+                    for (int i = 0; i < model.Count; i++)
+                    {
+                        Assert.AreEqual(Convert.ToInt32(lstTdElem[(5 * i)].Text), model[i].UserSessionID);
+                        Assert.AreEqual(lstTdElem[1 + (5 * i)].Text, model[i].DateTime);
+                        Assert.AreEqual(Convert.ToInt32(lstTdElem[2 + (5 * i)].Text), model[i].CurrentPageID);
+                        Assert.AreEqual(lstTdElem[3 + (5 * i)].Text, model[i].InteractionLength);
+                    }
+                }
+            }).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Checks to ensure that the Details button works properly.
+        /// </summary>
+        /// <param name="index">Index of the User Interactio to check.</param>
+        [Test]
+        [TestCase(0)]
+        public void UserInteractionsDetailsButton(int index)
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
+
+                //Make sure the create new button is displaying for all entries
+                Assert.IsTrue(driver.FindElement(By.ClassName("detailsButton")).Displayed);
+
+                //Make sure each button is going to the correct entry
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("detailsButton"));
+
+                HttpClient client = new HttpClient();
+                UserInteractionsClean cleaner = new UserInteractionsClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserInteraction/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
+
+                driver.Navigate().GoToUrl($"http://34.125.84.24/UserInteractions/Details/{model[index].UserInteractionID}");
+
+            }).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Checks to ensure that the Create button works properly.
+        /// </summary>
+        /// <param name="date">Date of the interaction.</param>
+        /// <param name="lengthOfInteraction">Ending date of the interaction.</param>
+        /// <param name="sessionID">Session ID of the interaction.</param>
+        /// <param name="pageID">Page ID of the interaction.</param>
+        [Test]
+        [TestCase("1-1-2022", "1-1-2022", "5", "6")]
+        [TestCase("2-3-2022", "3-2-2022", "4", "5")]
+        public void UserInteractionsCreateButton(string date, string lengthOfInteraction, string sessionID, string pageID)
+        {
+            driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
+
+            //Make sure the create new button is displaying for all entries
+            Assert.IsTrue(driver.FindElement(By.ClassName("newEntry")).Displayed);
+
+            //Make sure each button is going to the correct entry
+            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("newEntry"));
+
+            for (int i = 0; i < Entries.Count; i++)
+            {
+                Console.WriteLine(Entries[i].GetAttribute("href"));
+                Assert.AreEqual(Entries[i].GetAttribute("href"), $"http://34.125.84.24/UserInteractions/Create");
+            }
+
+            driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions/Create");
+
+            IWebElement sessionIDWeb = driver.FindElement(By.Name("UserSessionID"));
+            sessionIDWeb.SendKeys(sessionID);
+
+            IWebElement dateWeb = driver.FindElement(By.Name("DateTime"));
+            dateWeb.SendKeys(date);
+
+            IWebElement pageIDWeb = driver.FindElement(By.Name("CurrentPageID"));
+            pageIDWeb.SendKeys(pageID);
+
+            IWebElement lengthOfIntWeb = driver.FindElement(By.Name("InteractionLength"));
+            lengthOfIntWeb.SendKeys(lengthOfInteraction);
+
+            var element = driver.FindElements(By.CssSelector("input[class = 'btn btn-primary']"));
+            element[0].Click();
+        }
+
+        /// <summary>
+        /// Checks to ensure that the Delete button is displaying for all entries.
+        /// </summary>
+        [Test]
+        public void UserInteractionsDeleteButton()
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
+
+                //Make sure the create new button is displaying for all entries
+                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+
+                HttpClient client = new HttpClient();
+                UserInteractionsClean cleaner = new UserInteractionsClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserInteraction/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
+
+                //Make sure each button is going to the correct entry
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+
+                for (int i = 0; i < Entries.Count; i++)
+                {
+                    Assert.AreEqual(Entries[i].GetAttribute("href"), $"http://34.125.84.24/UserInteractions/Delete/{model[i].UserInteractionID}");
+                }
+            }).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Checks to ensure that the Delete button works properly.
+        /// </summary>
+        /// <param name="caseState">Entry to delete.</param>
+        [Test]
+        [TestCase(1)]
+        [TestCase(2)]
+        public void UserInteractionsDeleteEntry(int caseState)
+        {
+            Task.Run(async () =>
+            {
+                driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
+
+                //Make sure the create new button is displaying for all entries
+                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+
+                HttpClient client = new HttpClient();
+                UserInteractionsClean cleaner = new UserInteractionsClean();
+
+                var data = await client.GetStringAsync("http://34.125.193.123/BigBrotherRedux/UserInteraction/ReadAll");
+                data = cleaner.RemoveSquareBraces(data);
+                List<string> userInteractionInf = cleaner.PreppedData(cleaner.CleanAPIResponse(data));
+                var model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
+
+                for (int i = 0; i < model.Count; i++)
+                {
+                    Console.WriteLine(model[i].UserInteractionID);
+                }
+
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+
+                Console.WriteLine(model[caseState - 1].UserInteractionID);
+                Console.WriteLine(Entries[caseState - 1].GetAttribute("href"));
+
+                Assert.AreEqual(Entries[caseState - 1].GetAttribute("href"), $"http://34.125.84.24/UserInteractions/Delete/{model[caseState - 1].UserInteractionID}");
+
+                var element = driver.FindElements(By.ClassName("deleteButton"));
+                element[caseState - 1].Click();
+                element = driver.FindElements(By.CssSelector("input[class = 'btn btn-danger']"));
+                element[0].Click();
+            }).GetAwaiter().GetResult();
+        }
+        #endregion
 
         #region SessionsTests
         [Test]

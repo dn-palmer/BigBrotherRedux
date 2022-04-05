@@ -4,12 +4,13 @@
     "\\BBDisplay",
     "\\BBDisplay\\BBDisplay",
     "\\BBDisplay\\BBDisplay\\BBDisplay",
-    "\\BBDisplay\\BBDisplay\\BBDisplay\\Controllers",
     "\\BBDisplay\\BBDisplay\\BBDisplay\\Views",
     "\\BBDisplay\\BBDisplay\\BBDisplay\\Views\\PageReferences",
     "\\BigBrotherRedux",
-    "\\BigBrotherRedux\\Controllers"
+    "\\BigBrotherRedux\\Controllers",
+    "\\TestingProject",
+    "\\TestingProject\\TestingProject"
   ],
-  "SelectedNode": "\\BBDisplay\\BBDisplay\\BBDisplay\\Controllers\\UserInteractionsController.cs",
+  "SelectedNode": "\\TestingProject\\TestingProject\\TestingProject.sln",
   "PreviewInSolutionExplorer": false
 }
