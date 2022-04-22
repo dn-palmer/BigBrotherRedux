@@ -2,17 +2,74 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="Con" >  
-    <h1>Big Brother Monitoring Services</h1>
-    <h3>This site is designed to showcase the data we received from your website. Please feel free to have a look around.<br>
-    </h3>
-<p> <br/>User IP Data will show past and present user location information. <br/>
-    <br/>User Interactions will show past and present user website data. <br/>
-    <br/>Sessions will display the amount of time each user has spend on the site at a given time. <br/>
-    <br/>Page Reference wil display what each site on your page is for. <br/>
-</p> 
-    <a asp-controller="UserIPDatas" asp-action="Index"> <div class="rightDiv">User IP Data</div> </a>
-    <a asp-controller="UserInteractions" asp-action="Index"><div class="rightDiv">User Interactions</div></a>
-    <a asp-controller="Sessions" asp-action="Index"><div class="rightDiv">Sessions</div></a>
-    <a asp-controller="PageReferences" asp-action="Index"><div class="rightDiv">Page Reference</div></a>
+<div style="background-color: #573F54; border-radius: 20px;">
+<img src="images\HomePageImg.png" class="img-fluid" alt="...">
 </div>
+
+<br />
+<hr/>
+<br />
+
+<h1>Welcome to the Big Brother Monitoring site. We are happy to have you here! Below is a list of services that we provide and links to view our data. </h1>
+
+<br />
+<hr />
+
+
+
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card text-center">
+            <div class="card-body" style="background-color:#000000;">
+                <h5 class="card-title">Visitor Data</h5>
+                <p class="card-text">Past and present site visitor locations and personal data is stored here.</p>
+                <a class="btn btn-info" asp-controller="UserIPDatas" asp-action="Index">Details</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-6">
+        <div class="card text-center">
+            <div class="card-body" style="background-color:#000000;">
+                <h5 class="card-title">Interaction Data</h5>
+                <p class="card-text">The length of time visitors spend on specific pages can be seen here.</p>
+                <a asp-controller="UserInteractions" asp-action="Index" class="btn btn-info">Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card text-center">
+            <div class="card-body" style="background-color:#000000;">
+                <h5 class="card-title">Site Data</h5>
+                <p class="card-text">Detailed information about your sites pages is stored here.</p>
+                <a asp-controller="PageReferences" asp-action="Index" class="btn btn-info">Details</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-6">
+        <div class="card text-center">
+            <div class="card-body" style="background-color:#000000;">
+                <h5 class="card-title">Session Data</h5>
+                <p class="card-text">Was the visitor logged in? Did they make a purchase? Click here to find out.</p>
+                <a asp-controller="Sessions" asp-action="Index" class="btn btn-info">Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
