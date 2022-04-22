@@ -4,39 +4,43 @@
     ViewData["Title"] = "Page Reference";
 }
 
-<h1>Page Reference</h1>
 
-<p>
-    <a  class="newEntry"  asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAdded)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageDescription)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+
+<div style="background-color: #573F54; border-radius: 20px;text-align:center; ">
+<img src="images\PageReference.png" class="img-fluid" alt="...">
+</div>
+<br />
+<hr/>
+
+
+  <div style="text-align:center;">
+    <h3><u>Create Site Page Card</u></h3>
+    <p> Did you forget to send the new page data over? Don't worry! You can add it here manually</p>
+    <a asp-action="Create" class="btn btn-primary">Add Page</a>
+  </div>
+
+ <hr/>
+
+ <br />
+
+<h3>Site Page List:</h3>
+
+ <br />
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateAdded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageDescription)
-            </td>
-            <td>
-@*                <a asp-action="Edit" asp-route-id="@item.PageId">Edit</a> |*@
-                <a class="detailsButton" asp-action="Details" asp-route-id="@item.PageId">Details</a> 
-                <br/>
-                <a class="deleteButton" asp-action="Delete" asp-route-id="@item.PageId">Delete</a>
-            </td>
-        </tr>
+   
+    <div style="float:left; width:45%; margin:20px;">
+    <div class="card">
+      <div class="card-body" style="background-color:#000000;">
+        <h5 class="card-title">Page ID: @item.PageId</h5>
+        <p class="card-text">Page Description: @item.PageDescription</p>
+         <p class="card-text">Date Added: @item.DateAdded</p>
+        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.PageId">Details</a>
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PageId">Delete</a>
+      </div>
+    </div>
+  </div>
+  
 }
-    </tbody>
-</table>
+ <br />
+
+

@@ -4,51 +4,41 @@
     ViewData["Title"] = "User Interactions";
 }
 
-<h1>User Interactions</h1>
+<div style="background-color: #573F54; border-radius: 20px;text-align:center; ">
+<img src="images\Interactions.png" class="img-fluid" alt="...">
+</div>
+<br />
+<hr/>
 
-<p>
-    <a class="newEntry" asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserSessionID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CurrentPageID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InteractionLength)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+
+  <div style="text-align:center;">
+    <h3><u>Create Interaction Card</u></h3>
+    <p> Did you forget to send interaction information over? Don't worry! You can add it here manually</p>
+    <a asp-action="Create" class="btn btn-primary">Add Interaction</a>
+  </div>
+
+ <hr/>
+
+ <br />
+
+<h3>Interactions List:</h3>
+
+ <br />
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserSessionID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrentPageID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InteractionLength)
-            </td>
-            <td>
-@*              <a class="" asp-action="Edit" asp-route-id="@item.UserInteractionID">Edit</a> |*@
-                <a class="detailsButton"  asp-action="Details" asp-route-id="@item.UserInteractionID">Details</a> 
-                   <br/>
-                <a class="deleteButton" asp-action="Delete" asp-route-id="@item.UserInteractionID">Delete</a>
-            </td>
-        </tr>
+   
+    <div style="float:left; width:30%; margin:20px;">
+    <div class="card">
+      <div class="card-body" style="background-color:#000000;">
+        <h5 class="card-title">Session ID: @item.UserSessionID</h5>
+        <p class="card-text">Session Start Day/Time: @item.DateTime</p>
+        <p class="card-text">Page ID: @item.CurrentPageID</p>
+        <p class="card-text">Session End Day/Time: @item.InteractionLength</p>
+        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.UserInteractionID">Details</a>
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.UserInteractionID">Delete</a>
+      </div>
+    </div>
+  </div>
+  
 }
-    </tbody>
-</table>
+ <br />
+

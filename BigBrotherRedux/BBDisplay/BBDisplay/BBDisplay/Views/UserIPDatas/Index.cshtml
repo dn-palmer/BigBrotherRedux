@@ -4,74 +4,45 @@
     ViewData["Title"] = "User IP Data";
 }
 
-<h1>User IP Data</h1>
+<div style="background-color: #573F54; border-radius: 20px;text-align:center; ">
+<img src="images\IPAddress.png" class="img-fluid" alt="...">
+</div>
+<br />
+<hr/>
 
-<p>
-    <a class="newEntry" asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-             <th>
-                @Html.DisplayNameFor(model => model.UserIP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CountryCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CountryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StateOrRegion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ZipCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VisitCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeviceType)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+
+  <div style="text-align:center;">
+    <h3><u>Create Visitor Card</u></h3>
+    <p> Did you forget to send visitor information over? Don't worry! You can add it here manually</p>
+    <a asp-action="Create" class="btn btn-primary">Add Visitor</a>
+  </div>
+
+ <hr/>
+
+ <br />
+
+<h3>Site Visitor List:</h3>
+
+ <br />
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserIP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountryCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StateOrRegion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VisitCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeviceType)
-            </td>
-            <td>
-                <a class="detailsButton" asp-action="Details" asp-route-id="@item.UserIP">Details</a> 
-                   <br/>
-                <a class="deleteButton" asp-action="Delete" asp-route-id="@item.UserIP">Delete</a>
-            </td>
-        </tr>
+   
+    <div style="float:left; width:30%; margin:20px;">
+    <div class="card">
+      <div class="card-body" style="background-color:#000000;">
+        <h5 class="card-title">IP Address: @item.UserIP</h5>
+        <p class="card-text">Country Code: @item.CountryCode</p>
+        <p class="card-text">Country Name: @item.CountryName</p>
+        <p class="card-text">State/Region:        @item.StateOrRegion</p>
+        <p class="card-text">City:         @item.City</p>
+        <p class="card-text">Zipcode:      @item.ZipCode</p>
+        <p class="card-text">Desktop User:  @item.DeviceType</p>
+        <p class="card-text">Visit Count:  @item.VisitCount</p>
+        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.UserIP">Details</a>
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.UserIP">Delete</a>
+      </div>
+    </div>
+  </div>
+  
 }
-    </tbody>
-</table>
+ <br />
+
