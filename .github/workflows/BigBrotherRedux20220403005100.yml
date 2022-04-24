@@ -28,7 +28,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install Dependencies
-      run: dotnet restore '~\BBDisplay\BBDisplay\BBDisplay.csproj'
+      run: dotnet restore '~/BBDisplay/BBDisplay.csproj'
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
