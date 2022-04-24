@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore /BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/BBDisplay.csproj
+      run: dotnet restore ./BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/BBDisplay.csproj
     - name: Build
-      run: dotnet build /BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/BBDisplay.csproj --no-restore
+      run: dotnet build ./BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/BBDisplay.csproj --no-restore
     - name: Test
-      run: dotnet test /BigBrotherRedux/BigBrotherRedux/TestingProject/TestingProject/TestingProject/TestingProject.csproj --no-build --verbosity normal
+      run: dotnet test ./BigBrotherRedux/BigBrotherRedux/TestingProject/TestingProject/TestingProject/TestingProject.csproj --no-build --verbosity normal
