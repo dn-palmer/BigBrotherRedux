@@ -27,6 +27,6 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Test
-      uses: dn-palmer/BigBrotherRedux@master
+      uses: dn-palmer/BigBrotherRedux@main
       with:
           script: BigBrotherRedux/TestingProject/TestubgProject/TestingProject.csproj
