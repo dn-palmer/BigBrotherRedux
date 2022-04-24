@@ -20,6 +20,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build /BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/BBDisplay.csproj --no-restore
     - name: Test
-      run: dotnet test /BigBrotherRedux/TestingProject/TestingProject/TestingProject/bin/Debug/net6.0/TestingProject.dll --no-build --verbosity normal
+      run: dotnet test /BigBrotherRedux/BigBrotherRedux/TestingProject/TestingProject/TestingProject/TestingProject.csproj --no-build --verbosity normal
