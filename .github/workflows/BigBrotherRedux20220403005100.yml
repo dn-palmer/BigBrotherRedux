@@ -1,40 +1,37 @@
-name: Build and deploy .NET Core app to Windows WebApp BigBrotherRedux20220403005100
+name: build and test
+
 on:
   push:
-    branches:
-    - YMLFile
+  pull_request:
+    branches: [ main ]
+    paths:
+    - '**.cs'
+    - '**.csproj'
+
 env:
-  AZURE_WEBAPP_NAME: BigBrotherRedux20220403005100
-  AZURE_WEBAPP_PACKAGE_PATH: BBDisplay/publish
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.BigBrotherRedux20220403005100_eaea }}
-  CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 6.0.x
-  WORKING_DIRECTORY: BBDisplay
+  DOTNET_VERSION: '5.0.301' # The .NET SDK version to use
+
 jobs:
-  build-and-deploy:
-    runs-on: windows-latest
+  build-and-test:
+
+    name: build-and-test-${{matrix.os}}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
-    - name: Restore
-      run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore
+      
     - name: Build
-      run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+      run: dotnet build --configuration Release --no-restore
+    
     - name: Test
-      run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
-    - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
-    - name: Deploy to Azure WebApp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        publish-profile: ${{ env.AZURE_WEBAPP_PUBLISH_PROFILE }}
-    - name: Publish Artifacts
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: webapp
-        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      run: dotnet test --no-restore --verbosity normal
