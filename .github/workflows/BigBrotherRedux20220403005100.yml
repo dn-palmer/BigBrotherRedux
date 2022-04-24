@@ -28,7 +28,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install dependencies
-      run: dotnet restore BigBrotherRedux.csproj
+      run: dotnet restore /dn-palmer/BigBrotherRedux/BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay/BigBrotherRedux.csproj
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
