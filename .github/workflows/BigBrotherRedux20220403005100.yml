@@ -1,24 +1,28 @@
-name: test
+name: dotnet package
 
-on:
-  push:
-  pull_request:
-    branches: [ main ]
-    paths:
-    - '**.cs'
-    - '**.csproj'
 
-env:
-  DOTNET_VERSION: '5.0.301' # The .NET SDK version to use
+on: [push]
 
 jobs:
-  test:
-    name: test
+
+  build:
+
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
 
     steps:
-    - uses: dn-palmer/BigBrotherRedux@main
-    - name: Test
-      uses: dn-palmer/BigBrotherRedux@main
-      with:
-          script: BigBrotherRedux/TestingProject/TestubgProject/TestingProject.csproj
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Print PATH
+        run: echo ${env:PATH}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
