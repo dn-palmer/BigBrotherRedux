@@ -63,7 +63,7 @@ namespace TestingProject
         public void bigBrotherDisplayToHome()
         {
             driver.Navigate().GoToUrl("http://34.125.84.24/");
-            driver.FindElement(By.LinkText("Big Brother Display")).Click();
+            driver.FindElement(By.LinkText("BB-Monitoring")).Click();
             String actualUrl = "http://34.125.84.24/";
             String expectedUrl = driver.Url;
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -74,7 +74,7 @@ namespace TestingProject
         public void homeToHome()
         {
             driver.Navigate().GoToUrl("http://34.125.84.24/");
-            driver.FindElement(By.LinkText("Home")).Click();
+            driver.FindElement(By.LinkText("BB-Monitoring")).Click();
             String actualUrl = "http://34.125.84.24/";
             String expectedUrl = driver.Url;
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -98,7 +98,7 @@ namespace TestingProject
         public void toUserIPData()
         {
             driver.Navigate().GoToUrl("http://34.125.84.24/");
-            driver.FindElement(By.LinkText("User IP Data")).Click();
+            driver.FindElement(By.LinkText("Visitor Data")).Click();
             String actualUrl = "http://34.125.84.24/UserIpDatas";
             String expectedUrl = driver.Url;
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -109,7 +109,7 @@ namespace TestingProject
         public void toPageReferenceData()
         {
             driver.Navigate().GoToUrl("http://34.125.84.24/");
-            driver.FindElement(By.LinkText("Page Reference Data")).Click();
+            driver.FindElement(By.LinkText("Site Data")).Click();
             String actualUrl = "http://34.125.84.24/PageReferences";
             String expectedUrl = driver.Url;
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -120,7 +120,7 @@ namespace TestingProject
         public void toUserInteractionsData()
         {
             driver.Navigate().GoToUrl("http://34.125.84.24/");
-            driver.FindElement(By.LinkText("User Interactions Data")).Click();
+            driver.FindElement(By.LinkText("Interaction Data")).Click();
             String actualUrl = "http://34.125.84.24/UserInteractions";
             String expectedUrl = driver.Url;
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -131,7 +131,7 @@ namespace TestingProject
         public void toSessions()
         {
             driver.Navigate().GoToUrl("http://34.125.84.24/");
-            driver.FindElement(By.LinkText("Sessions")).Click();
+            driver.FindElement(By.LinkText("Session Data")).Click();
             String actualUrl = "http://34.125.84.24/Sessions";
             String expectedUrl = driver.Url;
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -540,10 +540,10 @@ namespace TestingProject
 
 
             //Make sure the create new button is displaying for all entries
-            Assert.IsTrue(driver.FindElement(By.ClassName("newEntry")).Displayed);
+            Assert.IsTrue(driver.FindElement(By.LinkText("Add Page")).Displayed);
 
             //Make sure each button is going to the correct entry
-            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("newEntry"));
+            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Add Page"));
 
             for (int i = 0; i < Entries.Count; i++)
             {
@@ -612,7 +612,7 @@ namespace TestingProject
 
 
                 //Make sure the create new button is displaying for all entries
-                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+                Assert.IsTrue(driver.FindElement(By.LinkText("Delete")).Displayed);
 
 
                 HttpClient client = new HttpClient();
@@ -628,7 +628,7 @@ namespace TestingProject
                 {
                     Console.WriteLine(model[i].PageId);
                 }
-                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Delete"));
 
                 Console.WriteLine(model[caseState - 1].PageId);
                 Console.WriteLine(Entries[caseState - 1].GetAttribute("href"));
