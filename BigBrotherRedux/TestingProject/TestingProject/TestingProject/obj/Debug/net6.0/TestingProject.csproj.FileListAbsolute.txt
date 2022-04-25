@@ -447,3 +447,4 @@ C:\Users\zakkt\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\TestingProject\T
 C:\Users\zakkt\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\TestingProject\TestingProject\TestingProject\obj\Debug\net6.0\TestingProject.pdb
 C:\Users\zakkt\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\TestingProject\TestingProject\TestingProject\obj\Debug\net6.0\TestingProject.genruntimeconfig.cache
 C:\Users\zakkt\Documents\GitHub\BigBrotherRedux\BigBrotherRedux\TestingProject\TestingProject\TestingProject\obj\Debug\net6.0\ref\TestingProject.dll
+C:\Users\sethn\Documents\MainComputer\Software Engineering II\SE2\BigBrotherRedux\BigBrotherRedux\TestingProject\TestingProject\TestingProject\bin\Debug\net6.0\Settings.job
