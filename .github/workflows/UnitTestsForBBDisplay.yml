@@ -1,10 +1,8 @@
-name: Unit Tests For BBDisplay
-
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -27,5 +25,5 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       working-directory: BigBrotherRedux/BBDisplay/BBDisplay/BBDisplay
     - name: Run Unit Tests
-      run: dotnet test --no-restore --verbosity normal
-      working-directory: BigBrotherRedux/TestingProject/TestingProject/TestingProject
+      run: dotnet vstest TestingProject.dll --logger:"trx;LogFileName=UnitTestResults.trx" --ResultsDirectory:UnitTestResults
+      working-directory: BigBrotherRedux/TestingProject/TestingProject/TestingProject/bin/Debug/net6.0
