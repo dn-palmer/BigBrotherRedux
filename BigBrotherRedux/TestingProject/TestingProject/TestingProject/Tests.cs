@@ -211,10 +211,10 @@ namespace TestingProject
 
 
                 //Make sure the create new button is displaying for all entries
-                Assert.IsTrue(driver.FindElement(By.ClassName("newEntry")).Displayed);
+                Assert.IsTrue(driver.FindElement(By.LinkText("Add Visitor")).Displayed);
 
                 //Make sure each button is going to the correct entry
-                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("newEntry"));
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Add Visitor"));
 
                 for (int i = 0; i<Entries.Count; i++)
                 {
@@ -296,7 +296,6 @@ namespace TestingProject
         [Test]
         [TestCase(1)]
         [TestCase(2)]
-        [TestCase(3)]
 
         public void UserIPDeleteEntry(int caseState)
         {
@@ -306,7 +305,7 @@ namespace TestingProject
 
 
                 //Make sure the create new button is displaying for all entries
-                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+                Assert.IsTrue(driver.FindElement(By.LinkText("Delete")).Displayed);
 
 
                 HttpClient client = new HttpClient();
@@ -322,12 +321,12 @@ namespace TestingProject
                 {
                     Console.WriteLine(model[i].UserIP);
                 }
-                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Delete"));
 
                 Console.WriteLine(model[caseState - 1].UserIP);
                 Console.WriteLine(Entries[caseState - 1].GetAttribute("href"));
                 Assert.AreEqual(Entries[caseState - 1].GetAttribute("href"), $"http://34.125.84.24/UserIPDatas/Delete/{model[caseState - 1].UserIP}");
-                var element = driver.FindElements(By.ClassName("deleteButton"));
+                var element = driver.FindElements(By.LinkText("Delete"));
                 element[caseState - 1].Click();
                 element = driver.FindElements(By.CssSelector("input[class = 'btn btn-danger']"));
                 element[0].Click();
@@ -419,7 +418,7 @@ namespace TestingProject
                 }
 
                 //Init TR elements from table we found into list
-                IList<IWebElement> trCollection = driver.FindElements(By.TagName("tr"));
+                IList<IWebElement> trCollection = driver.FindElements(By.ClassName("card-body"));
 
                 for (int i = 0; i < trCollection.Count; i++)
                 {
@@ -503,11 +502,11 @@ namespace TestingProject
 
 
                 //Make sure the create new button is displaying for all entries
-                Assert.IsTrue(driver.FindElement(By.ClassName("detailsButton")).Displayed);
+                Assert.IsTrue(driver.FindElement(By.LinkText("Details")).Displayed);
 
 
                 //Make sure each button is going to the correct entry
-                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("detailsButton"));
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Details"));
 
 
 
@@ -918,10 +917,10 @@ namespace TestingProject
                 driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
 
                 //Make sure the create new button is displaying for all entries
-                Assert.IsTrue(driver.FindElement(By.ClassName("detailsButton")).Displayed);
+                Assert.IsTrue(driver.FindElement(By.LinkText("Details")).Displayed);
 
                 //Make sure each button is going to the correct entry
-                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("detailsButton"));
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Details"));
 
                 HttpClient client = new HttpClient();
                 UserInteractionsClean cleaner = new UserInteractionsClean();
@@ -951,10 +950,10 @@ namespace TestingProject
             driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
 
             //Make sure the create new button is displaying for all entries
-            Assert.IsTrue(driver.FindElement(By.ClassName("newEntry")).Displayed);
+            Assert.IsTrue(driver.FindElement(By.LinkText("Add Interaction")).Displayed);
 
             //Make sure each button is going to the correct entry
-            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("newEntry"));
+            ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Add Interaction"));
 
             for (int i = 0; i < Entries.Count; i++)
             {
@@ -991,7 +990,7 @@ namespace TestingProject
                 driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
 
                 //Make sure the create new button is displaying for all entries
-                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+                Assert.IsTrue(driver.FindElement(By.LinkText("Delete")).Displayed);
 
                 HttpClient client = new HttpClient();
                 UserInteractionsClean cleaner = new UserInteractionsClean();
@@ -1002,7 +1001,7 @@ namespace TestingProject
                 var model = cleaner.IndexPrepUserInteractionsData(userInteractionInf);
 
                 //Make sure each button is going to the correct entry
-                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Delete"));
 
                 for (int i = 0; i < Entries.Count; i++)
                 {
@@ -1025,7 +1024,7 @@ namespace TestingProject
                 driver.Navigate().GoToUrl("http://34.125.84.24/UserInteractions");
 
                 //Make sure the create new button is displaying for all entries
-                Assert.IsTrue(driver.FindElement(By.ClassName("deleteButton")).Displayed);
+                Assert.IsTrue(driver.FindElement(By.LinkText("Delete")).Displayed);
 
                 HttpClient client = new HttpClient();
                 UserInteractionsClean cleaner = new UserInteractionsClean();
@@ -1040,14 +1039,14 @@ namespace TestingProject
                     Console.WriteLine(model[i].UserInteractionID);
                 }
 
-                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.ClassName("deleteButton"));
+                ReadOnlyCollection<IWebElement> Entries = driver.FindElements(By.LinkText("Delete"));
 
                 Console.WriteLine(model[caseState - 1].UserInteractionID);
                 Console.WriteLine(Entries[caseState - 1].GetAttribute("href"));
 
                 Assert.AreEqual(Entries[caseState - 1].GetAttribute("href"), $"http://34.125.84.24/UserInteractions/Delete/{model[caseState - 1].UserInteractionID}");
 
-                var element = driver.FindElements(By.ClassName("deleteButton"));
+                var element = driver.FindElements(By.LinkText("Delete"));
                 element[caseState - 1].Click();
                 element = driver.FindElements(By.CssSelector("input[class = 'btn btn-danger']"));
                 element[0].Click();
