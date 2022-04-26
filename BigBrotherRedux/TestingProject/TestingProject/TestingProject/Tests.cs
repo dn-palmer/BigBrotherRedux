@@ -645,7 +645,7 @@ namespace TestingProject
 
 
         /// <summary>
-        /// Makes sure the back button on details works and nothing changes
+        /// Makes sure the back button on details works and nothing changes (random)
         /// </summary>
         [Test]
 
